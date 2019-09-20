@@ -10,8 +10,13 @@ def home():
 
 @app.route('/fingerprint')
 def fingerprint():
+    return render_template('fingerprint.html')
+
+
+@app.route('/results')
+def results():
     return render_template(
-        'fingerprint.html',
+        'results.html',
         header_user_agent=request.headers['User-Agent'],
         header_accept=request.headers['Accept']
     )
