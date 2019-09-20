@@ -1,10 +1,23 @@
 body {
     background-color: black;
-    color: white;
+    color: green;
     font-family: monospace;
     font-size: 18px;
 }
 
 a {
     color: green;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, td {
+    border: 1px solid green;
+}
+
+td {
+    padding: 10px;
 }

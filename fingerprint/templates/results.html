@@ -5,7 +5,16 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
   </head>
   <body>
-    <p>Header "User-Agent": {{ header_user_agent }}</p>
-    <p>Header "Accept": {{ header_accept }}</p>
+    <h1>Results</h1>
+    <table>
+      <tr>
+        <td>Header "User-Agent"</td>
+        <td>{{ header_user_agent }}</td>
+      </tr>
+      <tr>
+        <td>Header "Accept"</td>
+        <td>{{ header_accept }}</td>
+      </tr>
+    </table>
   </body>
 </html>
