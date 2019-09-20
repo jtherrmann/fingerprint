@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -10,4 +10,8 @@ def home():
 
 @app.route('/fingerprint')
 def fingerprint():
-    return 'TODO: your fingerprint here'
+    return render_template(
+        'fingerprint.html',
+        header_user_agent=request.headers['User-Agent'],
+        header_accept=request.headers['Accept']
+    )
