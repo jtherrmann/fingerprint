@@ -1,9 +1,12 @@
 function fingerprint() {
     $.post({
         url: '/fingerprint-js',
-        data: {},
+        data: {
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
+            timezoneOffset: new Date().getTimezoneOffset()
+        },
         success: function(response) {
-            $('#header-user-agent').text(response.header_user_agent);
+            $('#timezone-offset').text(response.timezoneOffset);
             $('#js-results').show();
         },
         error: function(error) {

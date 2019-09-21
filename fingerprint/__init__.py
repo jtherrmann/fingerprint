@@ -18,6 +18,7 @@ def fingerprint():
 
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
+    data = request.form.to_dict()
     return jsonify(
-        header_user_agent=request.headers['User-Agent']
+        timezoneOffset=data['timezoneOffset']
     )
