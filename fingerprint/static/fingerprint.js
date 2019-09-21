@@ -19,16 +19,16 @@ function fingerprint() {
 }
 
 
-function populateTable(dict, tableId) {
-    for (var key in dict) {
+function populateTable(kvpairs, tableId) {
+    for (var i in kvpairs) {
         let table = $(tableId);
         let row = $('<tr />');
 
         let keyCell = $('<td />');
         let valCell = $('<td />');
 
-        keyCell.text(key);
-        valCell.text(dict[key]);
+        keyCell.text(kvpairs[i][0]);
+        valCell.text(kvpairs[i][1]);
 
         row.append(keyCell);
         row.append(valCell);

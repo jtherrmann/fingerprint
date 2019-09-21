@@ -30,11 +30,11 @@ def fingerprint_js():
         requestHeaders=request_headers(
             'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
         ),
-        otherData={
-            'Timezone offset': data['timezoneOffset']
-        }
+        otherData=[
+            ('Timezone offset', data['timezoneOffset'])
+        ]
     )
 
 
 def request_headers(*headers):
-    return {header: request.headers[header] for header in headers}
+    return [(header, request.headers[header]) for header in headers]

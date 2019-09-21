@@ -15,10 +15,10 @@
 
     <h2>Initial request headers:</h2>
     <table>
-      {% for header in headers %}
+      {% for key, val in headers %}
       <tr>
-        <td>{{ header }}</td>
-        <td>{{ headers[header] }}</td>
+        <td>{{ key }}</td>
+        <td>{{ val }}</td>
       </tr>
       {% endfor %}
     </table>
