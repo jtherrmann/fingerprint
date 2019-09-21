@@ -12,7 +12,16 @@ def home():
 def fingerprint():
     return render_template(
         'fingerprint.html',
-        header_user_agent=request.headers['User-Agent']
+        headers={
+            header: request.headers[header] for header in [
+                'User-Agent',
+                'Accept',
+                'Accept-Language',
+                'Accept-Encoding',
+                'DNT',
+                'Upgrade-Insecure-Requests'
+            ]
+        }
     )
 
 

@@ -10,10 +10,12 @@
     <!-- TODO switch to h1 and style as needed -->
     <h2>HTTP request headers:</h2>
     <table>
+      {% for header in headers %}
       <tr>
-        <td>Header "User-Agent"</td>
-        <td>{{ header_user_agent }}</td>
+        <td>{{ header }}</td>
+        <td>{{ headers[header] }}</td>
       </tr>
+      {% endfor %}
     </table>
     <!-- TODO more vertical space here -->
     <h2>JavaScript:</h2>
