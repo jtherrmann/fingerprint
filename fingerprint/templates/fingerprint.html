@@ -7,6 +7,17 @@
     <script src="/static/fingerprint.js"></script>
   </head>
   <body>
+    <table id="results" hidden>
+      <tr>
+        <td>Header "User-Agent"</td>
+        <td id="header-user-agent"></td>
+      </tr>
+      <tr>
+        <td>Header "Accept"</td>
+        <td id="header-accept"></td>
+      </tr>
+    </table>
+    <div id="fingerprint-error"></div>
     <noscript>
       JavaScript is not enabled. <a href="fingerprint-noscript">Click here</a>
       to continue.

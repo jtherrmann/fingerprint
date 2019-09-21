@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
@@ -11,6 +11,14 @@ def home():
 @app.route('/fingerprint')
 def fingerprint():
     return render_template('fingerprint.html')
+
+
+@app.route('/fingerprint-js', methods=['POST'])
+def fingerprint_js():
+    return jsonify(
+        header_user_agent=request.headers['User-Agent'],
+        header_accept=request.headers['Accept']
+    )
 
 
 @app.route('/fingerprint-noscript')
