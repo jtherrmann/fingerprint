@@ -10,19 +10,14 @@ def home():
 
 @app.route('/fingerprint')
 def fingerprint():
-    return render_template('fingerprint.html')
+    return render_template(
+        'fingerprint.html',
+        header_user_agent=request.headers['User-Agent']
+    )
 
 
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
     return jsonify(
-        header_user_agent=request.headers['User-Agent']
-    )
-
-
-@app.route('/fingerprint-noscript')
-def fingerprint_noscript():
-    return render_template(
-        'fingerprint-noscript.html',
         header_user_agent=request.headers['User-Agent']
     )

@@ -4,10 +4,10 @@ function fingerprint() {
         data: {},
         success: function(response) {
             $('#header-user-agent').text(response.header_user_agent);
-            $('#results').show();
+            $('#js-results').show();
         },
         error: function(error) {
-            $('#fingerprint-error').text(
+            $('#js-fingerprint-error').text(
                 'Error: ' + error.status + ' ' + error.statusText
             );
         }
