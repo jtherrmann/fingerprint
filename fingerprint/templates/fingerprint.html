@@ -13,7 +13,8 @@
     <!-- TODO style table captions: left-aligned, padding -->
     <!-- TODO uniform width for table cells -->
 
-    <h2>Initial request headers:</h2>
+    <h2>Initial request:</h2>
+    <p>Headers from the initial request for this webpage.</p>
     <table>
       {% for key, val in headers %}
       <tr>
@@ -26,16 +27,20 @@
     <!-- TODO more vertical space here -->
 
     <h2>JavaScript:</h2>
+    <p>
+      Fingerprinting data collected via JavaScript, reported via an AJAX
+      request.
+    </p>
     <div id="js-results" hidden>
 
       <table id="js-headers">
         <caption>Request headers</caption>
       </table>
 
-      <!-- TODO more vertical space here -->
+      <br />
 
       <table id="js-other-data">
-        <caption>Other data</caption>
+        <caption>JavaScript data</caption>
       </table>
 
     </div>
