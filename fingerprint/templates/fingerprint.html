@@ -1,13 +1,16 @@
 <!doctype html>
 <html>
+
   <head>
     <title>What's my fingerprint?</title>
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/fingerprint.js"></script>
   </head>
+
   <body>
     <!-- TODO switch to h1 and style as needed -->
+
     <h2>HTTP request headers:</h2>
     <table>
       {% for header in headers %}
@@ -17,17 +20,22 @@
       </tr>
       {% endfor %}
     </table>
+
     <!-- TODO more vertical space here -->
+
     <h2>JavaScript:</h2>
     <table id="js-results" hidden>
+      <!-- TODO maybe dynamically generate all these rows and cells in
+      fingerprint.js instead of hard-coding them here -->
       <tr>
         <td>Timezone offset</td>
         <td id="timezone-offset"></td>
       </tr>
     </table>
+
     <div id="js-fingerprint-error"></div>
-    <noscript>
-      JavaScript is not enabled.
-    </noscript>
+    <noscript>JavaScript is not enabled.</noscript>
+
   </body>
+
 </html>
