@@ -24,8 +24,8 @@ function populateTable(kvpairs, tableId) {
         let table = $(tableId);
         let row = $('<tr />');
 
-        let keyCell = $('<td />');
-        let valCell = $('<td />');
+        let keyCell = $('<td class="key-cell" />');
+        let valCell = $('<td class="val-cell" />');
 
         keyCell.text(kvpairs[i][0]);
         valCell.text(kvpairs[i][1]);

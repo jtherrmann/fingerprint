@@ -10,16 +10,16 @@
 
   <body>
     <!-- TODO switch to h1 and style as needed -->
-    <!-- TODO style table captions: left-aligned, padding -->
-    <!-- TODO uniform width for table cells -->
 
     <h2>Initial request:</h2>
-    <p>Headers from the initial request for this webpage.</p>
+    <p class="fingerprint-description">
+      Headers from the initial request for this webpage.
+    </p>
     <table>
       {% for key, val in headers %}
       <tr>
-        <td>{{ key }}</td>
-        <td>{{ val }}</td>
+        <td class="key-cell">{{ key }}</td>
+        <td class="val-cell">{{ val }}</td>
       </tr>
       {% endfor %}
     </table>
@@ -27,7 +27,7 @@
     <!-- TODO more vertical space here -->
 
     <h2>JavaScript:</h2>
-    <p>
+    <p class="fingerprint-description">
       Fingerprinting data collected via JavaScript, reported via an AJAX
       request.
     </p>

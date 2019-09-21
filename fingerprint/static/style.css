@@ -1,12 +1,7 @@
 body {
-    background-color: black;
-    color: green;
-    font-family: monospace;
-    font-size: 18px;
-}
-
-a {
-    color: green;
+    background-color: white;
+    color: black;
+    font-family: sans-serif;
 }
 
 table {
@@ -15,9 +10,26 @@ table {
 }
 
 table, td {
-    border: 1px solid green;
+    border: 1px solid black;
 }
 
 td {
     padding: 10px;
+}
+
+table > caption {
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+.fingerprint-description {
+    font-style: italic;
+}
+
+.key-cell {
+    width: 25%;
+}
+
+.val-cell {
+    font-family: mono;
 }
