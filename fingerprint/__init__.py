@@ -16,8 +16,7 @@ def fingerprint():
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
     return jsonify(
-        header_user_agent=request.headers['User-Agent'],
-        header_accept=request.headers['Accept']
+        header_user_agent=request.headers['User-Agent']
     )
 
 
@@ -25,6 +24,5 @@ def fingerprint_js():
 def fingerprint_noscript():
     return render_template(
         'fingerprint-noscript.html',
-        header_user_agent=request.headers['User-Agent'],
-        header_accept=request.headers['Accept']
+        header_user_agent=request.headers['User-Agent']
     )
