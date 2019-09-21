@@ -12,16 +12,14 @@ def home():
 def fingerprint():
     return render_template(
         'fingerprint.html',
-        headers={
-            header: request.headers[header] for header in [
-                'User-Agent',
-                'Accept',
-                'Accept-Language',
-                'Accept-Encoding',
-                'DNT',
-                'Upgrade-Insecure-Requests'
-            ]
-        }
+        headers=request_headers(
+            'User-Agent',
+            'Accept',
+            'Accept-Language',
+            'Accept-Encoding',
+            'DNT',
+            'Upgrade-Insecure-Requests'
+        )
     )
 
 
@@ -29,5 +27,14 @@ def fingerprint():
 def fingerprint_js():
     data = request.form.to_dict()
     return jsonify(
-        timezoneOffset=data['timezoneOffset']
+        requestHeaders=request_headers(
+            'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
+        ),
+        otherData={
+            'Timezone offset': data['timezoneOffset']
+        }
     )
+
+
+def request_headers(*headers):
+    return {header: request.headers[header] for header in headers}

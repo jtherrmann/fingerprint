@@ -6,7 +6,8 @@ function fingerprint() {
             timezoneOffset: new Date().getTimezoneOffset()
         },
         success: function(response) {
-            $('#timezone-offset').text(response.timezoneOffset);
+            populateTable(response.requestHeaders, '#js-headers');
+            populateTable(response.otherData, '#js-other-data');
             $('#js-results').show();
         },
         error: function(error) {
@@ -15,6 +16,25 @@ function fingerprint() {
             );
         }
     });
+}
+
+
+function populateTable(dict, tableId) {
+    for (var key in dict) {
+        let table = $(tableId);
+        let row = $('<tr />');
+
+        let keyCell = $('<td />');
+        let valCell = $('<td />');
+
+        keyCell.text(key);
+        valCell.text(dict[key]);
+
+        row.append(keyCell);
+        row.append(valCell);
+
+        table.append(row);
+    }
 }
 
 
