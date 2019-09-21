@@ -13,10 +13,10 @@ def fingerprint():
     return render_template('fingerprint.html')
 
 
-@app.route('/results')
-def results():
+@app.route('/fingerprint-noscript')
+def fingerprint_noscript():
     return render_template(
-        'results.html',
+        'fingerprint-noscript.html',
         header_user_agent=request.headers['User-Agent'],
         header_accept=request.headers['Accept']
     )
