@@ -25,15 +25,15 @@ def fingerprint():
 
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
-    data = flask.request.form.to_dict()
-    return flask.jsonify(
-        requestHeaders=request_headers(
-            'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
-        ),
-        otherData=[
-            ('Timezone offset', data['timezoneOffset'])
-        ]
+    headers = request_headers(
+        'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
+    request_data = flask.request.form.to_dict()
+    other_data = [
+        ('Timezone offset', request_data['timezoneOffset'])
+    ]
+    database.add_javascript_fingerprint(headers, other_data)
+    return flask.jsonify(requestHeaders=headers, otherData=other_data)
 
 
 def request_headers(*headers):
