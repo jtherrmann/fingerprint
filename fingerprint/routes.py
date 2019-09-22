@@ -1,6 +1,7 @@
 import flask
 
 from . import app
+from . import database
 
 
 @app.route('/')
@@ -10,17 +11,16 @@ def home():
 
 @app.route('/fingerprint')
 def fingerprint():
-    return flask.render_template(
-        'fingerprint.html',
-        headers=request_headers(
-            'User-Agent',
-            'Accept',
-            'Accept-Language',
-            'Accept-Encoding',
-            'DNT',
-            'Upgrade-Insecure-Requests'
-        )
+    headers = request_headers(
+        'User-Agent',
+        'Accept',
+        'Accept-Language',
+        'Accept-Encoding',
+        'DNT',
+        'Upgrade-Insecure-Requests'
     )
+    database.add_initial_request_fingerprint(headers)
+    return flask.render_template('fingerprint.html', headers=headers)
 
 
 @app.route('/fingerprint-js', methods=['POST'])

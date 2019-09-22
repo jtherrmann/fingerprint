@@ -1,2 +1,4 @@
 flake8
 flask
+psycopg2
+sqlalchemy
