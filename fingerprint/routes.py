@@ -1,16 +1,16 @@
-from flask import jsonify, render_template, request
+import flask
 
 from . import app
 
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return flask.render_template('home.html')
 
 
 @app.route('/fingerprint')
 def fingerprint():
-    return render_template(
+    return flask.render_template(
         'fingerprint.html',
         headers=request_headers(
             'User-Agent',
@@ -25,8 +25,8 @@ def fingerprint():
 
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
-    data = request.form.to_dict()
-    return jsonify(
+    data = flask.request.form.to_dict()
+    return flask.jsonify(
         requestHeaders=request_headers(
             'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
         ),
@@ -37,4 +37,4 @@ def fingerprint_js():
 
 
 def request_headers(*headers):
-    return [(header, request.headers[header]) for header in headers]
+    return [(header, flask.request.headers[header]) for header in headers]
