@@ -1,3 +1,5 @@
+import json
+
 import flask
 
 from . import app
@@ -28,10 +30,7 @@ def fingerprint_js():
     headers = request_headers(
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
-    request_data = flask.request.form.to_dict()
-    other_data = [
-        ('Timezone offset', request_data['timezoneOffset'])
-    ]
+    other_data = json.loads(flask.request.form['fingerprint'])
     database.add_javascript_fingerprint(headers, other_data)
     return flask.jsonify(requestHeaders=headers, otherData=other_data)
 

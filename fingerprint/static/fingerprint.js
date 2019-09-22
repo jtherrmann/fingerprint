@@ -2,8 +2,10 @@ function fingerprint() {
     $.post({
         url: '/fingerprint-js',
         data: {
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
-            timezoneOffset: new Date().getTimezoneOffset()
+            fingerprint: JSON.stringify([
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
+                ['Timezone offset', new Date().getTimezoneOffset()]
+            ])
         },
         success: function(response) {
             populateTable(response.requestHeaders, '#js-headers');
