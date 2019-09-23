@@ -1,2 +1,6 @@
+# See
+# https://devcenter.heroku.com/articles/preparing-a-codebase-for-heroku-deployment#4-listen-on-the-correct-port
+# for info on `PORT`.
+
 export FLASK_APP=fingerprint
-flask run
+flask run -h 0.0.0.0 -p $PORT
