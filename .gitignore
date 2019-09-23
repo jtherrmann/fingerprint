@@ -1,2 +1,5 @@
 __pycache__
 venv
+
+# https://devcenter.heroku.com/articles/getting-started-with-python#define-config-vars
+.env

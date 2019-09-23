@@ -7,20 +7,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-def parse_config_file():
-    name = 'database.cfg'
-    assert os.path.isfile(name), f'{name} is not a file'
-    config = configparser.ConfigParser()
-    config.read(name)
-    return dict(config['default'])
-
-
-CFG = parse_config_file()
-
-ENGINE = sqlalchemy.create_engine(
-    f"postgresql://{CFG['username']}:{CFG['password']}"
-    f"@{CFG['hostname']}/{CFG['dbname']}"
-)
+# See
+# https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres
+# for info on `DATABASE_URL`.
+ENGINE = sqlalchemy.create_engine(os.environ['DATABASE_URL'])
 
 Base = declarative_base()
 
