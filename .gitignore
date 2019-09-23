@@ -1,5 +1,5 @@
 __pycache__
 venv
 
-# https://devcenter.heroku.com/articles/getting-started-with-python#define-config-vars
+# Used by `heroku local`
 .env

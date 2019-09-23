@@ -7,9 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-# See
-# https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres
-# for info on `DATABASE_URL`.
+# `DATABASE_URL` is set by Heroku.
 ENGINE = sqlalchemy.create_engine(os.environ['DATABASE_URL'])
 
 Base = declarative_base()
