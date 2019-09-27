@@ -1,4 +1,2 @@
-export FLASK_APP=fingerprint
-
 # `PORT` is set by Heroku.
-flask run -h 0.0.0.0 -p $PORT
+gunicorn --bind=0.0.0.0:$PORT --workers=4 fingerprint:app
