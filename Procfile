@@ -1,1 +1,1 @@
-web: ./run-server
+web: ./gunicorn-prod

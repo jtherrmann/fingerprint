@@ -1,5 +1,3 @@
+.env
 __pycache__
 venv
-
-# Used by `heroku local`
-.env
