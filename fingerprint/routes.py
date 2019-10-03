@@ -1,9 +1,14 @@
+import base64
 import json
+import os
 
 import flask
 
 from . import app
 from . import database
+
+
+USER_ID_KEY = 'user-id'
 
 
 @app.route('/')
@@ -21,8 +26,23 @@ def fingerprint():
         'DNT',
         'Upgrade-Insecure-Requests'
     )
-    database.add_initial_request_fingerprint(headers)
-    return flask.render_template('fingerprint.html', headers=headers)
+    response = flask.make_response(
+        flask.render_template('fingerprint.html', headers=headers)
+    )
+
+    user_id = flask.request.cookies.get(USER_ID_KEY)
+    if user_id is None:
+        user_id = new_user_id()
+        # TODO max_age, expires
+        response.set_cookie(USER_ID_KEY, user_id)
+
+    database.add_initial_request_fingerprint(user_id, headers)
+    return response
+
+
+def new_user_id():
+    # TODO check if it exists in database
+    return base64.b64encode(os.urandom(18)).decode()
 
 
 @app.route('/fingerprint-js', methods=['POST'])

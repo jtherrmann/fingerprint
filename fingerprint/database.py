@@ -16,6 +16,7 @@ Base = declarative_base()
 class InitialRequestFingerprint(Base):
     __tablename__ = "initial_request_fingerprints"
     id = Column(Integer, primary_key=True)
+    cookie_user_id = Column(String)
     user_agent = Column(String)
     accept = Column(String)
     accept_language = Column(String)
@@ -41,10 +42,10 @@ Session = sessionmaker()
 Session.configure(bind=ENGINE)
 
 
-def add_initial_request_fingerprint(headers):
+def add_initial_request_fingerprint(user_id, headers):
     session = Session()
     try:
-        session.add(get_initial_request_fingerprint(headers))
+        session.add(get_initial_request_fingerprint(user_id, headers))
         session.commit()
     except:  # noqa: E722
         print(traceback.format_exc())
@@ -53,8 +54,10 @@ def add_initial_request_fingerprint(headers):
         session.close()
 
 
-def get_initial_request_fingerprint(headers):
-    return InitialRequestFingerprint(**headers_to_row_kwargs(headers))
+def get_initial_request_fingerprint(user_id, headers):
+    return InitialRequestFingerprint(
+        cookie_user_id=user_id, **headers_to_row_kwargs(headers)
+    )
 
 
 def add_javascript_fingerprint(headers, other_data):
