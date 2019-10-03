@@ -28,6 +28,7 @@ class InitialRequestFingerprint(Base):
 class JavaScriptFingerprint(Base):
     __tablename__ = "javascript_fingerprints"
     id = Column(Integer, primary_key=True)
+    cookie_user_id = Column(String)
     user_agent = Column(String)
     accept_language = Column(String)
     accept_encoding = Column(String)
@@ -60,10 +61,10 @@ def get_initial_request_fingerprint(user_id, headers):
     )
 
 
-def add_javascript_fingerprint(headers, other_data):
+def add_javascript_fingerprint(user_id, headers, other_data):
     session = Session()
     try:
-        session.add(get_javascript_fingerprint(headers, other_data))
+        session.add(get_javascript_fingerprint(user_id, headers, other_data))
         session.commit()
     except:  # noqa: E722
         print(traceback.format_exc())
@@ -72,8 +73,9 @@ def add_javascript_fingerprint(headers, other_data):
         session.close()
 
 
-def get_javascript_fingerprint(headers, other_data):
+def get_javascript_fingerprint(user_id, headers, other_data):
     return JavaScriptFingerprint(
+        cookie_user_id=user_id,
         **headers_to_row_kwargs(headers),
         **javascript_data_to_row_kwargs(other_data)
     )

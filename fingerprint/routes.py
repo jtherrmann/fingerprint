@@ -47,11 +47,12 @@ def new_user_id():
 
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
+    user_id = flask.request.cookies.get(USER_ID_KEY)
     headers = request_headers(
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
     other_data = json.loads(flask.request.form['fingerprint'])
-    database.add_javascript_fingerprint(headers, other_data)
+    database.add_javascript_fingerprint(user_id, headers, other_data)
     return flask.jsonify(requestHeaders=headers, otherData=other_data)
 
 
