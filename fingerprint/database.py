@@ -1,4 +1,5 @@
 import os
+import traceback
 
 import sqlalchemy
 from sqlalchemy import Column, Integer, String
@@ -46,7 +47,7 @@ def add_initial_request_fingerprint(headers):
         session.add(get_initial_request_fingerprint(headers))
         session.commit()
     except:  # noqa: E722
-        # TODO log error
+        print(traceback.format_exc())
         session.rollback()
     finally:
         session.close()
@@ -62,7 +63,7 @@ def add_javascript_fingerprint(headers, other_data):
         session.add(get_javascript_fingerprint(headers, other_data))
         session.commit()
     except:  # noqa: E722
-        # TODO log error
+        print(traceback.format_exc())
         session.rollback()
     finally:
         session.close()
