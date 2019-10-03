@@ -95,3 +95,14 @@ def javascript_data_to_row_kwargs(data):
 
 def javascript_data_key_to_column_name(key):
     return key.lower().replace(' ', '_')
+
+
+def cookie_id_already_exists(cookie_id):
+    session = Session()
+    try:
+        return session\
+            .query(InitialRequestFingerprint)\
+            .filter_by(cookie_user_id=cookie_id)\
+            .count() > 0
+    finally:
+        session.close()

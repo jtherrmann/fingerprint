@@ -41,8 +41,10 @@ def fingerprint():
 
 
 def new_user_id():
-    # TODO check if it exists in database
-    return base64.b64encode(os.urandom(18)).decode()
+    user_id = base64.b64encode(os.urandom(18)).decode()
+    assert not database.cookie_id_already_exists(user_id), \
+        f"cookie ID '{user_id}' already exists (this should never happen)"
+    return user_id
 
 
 @app.route('/fingerprint-js', methods=['POST'])
