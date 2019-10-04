@@ -2,7 +2,7 @@ import os
 import traceback
 
 import sqlalchemy
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -17,6 +17,7 @@ class InitialRequestFingerprint(Base):
     __tablename__ = "initial_request_fingerprints"
     id = Column(Integer, primary_key=True)
     cookie_user_id = Column(String)
+    collection_datetime = Column(DateTime)
     user_agent = Column(String)
     accept = Column(String)
     accept_language = Column(String)
@@ -29,6 +30,7 @@ class JavaScriptFingerprint(Base):
     __tablename__ = "javascript_fingerprints"
     id = Column(Integer, primary_key=True)
     cookie_user_id = Column(String)
+    collection_datetime = Column(DateTime)
     user_agent = Column(String)
     accept_language = Column(String)
     accept_encoding = Column(String)
@@ -43,10 +45,14 @@ Session = sessionmaker()
 Session.configure(bind=ENGINE)
 
 
-def add_initial_request_fingerprint(user_id, headers):
+def add_initial_request_fingerprint(user_id, collection_datetime, headers):
     session = Session()
     try:
-        session.add(get_initial_request_fingerprint(user_id, headers))
+        session.add(
+            get_initial_request_fingerprint(
+                user_id, collection_datetime, headers
+            )
+        )
         session.commit()
     except:  # noqa: E722
         print(traceback.format_exc())
@@ -55,16 +61,23 @@ def add_initial_request_fingerprint(user_id, headers):
         session.close()
 
 
-def get_initial_request_fingerprint(user_id, headers):
+def get_initial_request_fingerprint(user_id, collection_datetime, headers):
     return InitialRequestFingerprint(
-        cookie_user_id=user_id, **headers_to_row_kwargs(headers)
+        cookie_user_id=user_id,
+        collection_datetime=collection_datetime,
+        **headers_to_row_kwargs(headers)
     )
 
 
-def add_javascript_fingerprint(user_id, headers, other_data):
+def add_javascript_fingerprint(
+        user_id, collection_datetime, headers, other_data):
     session = Session()
     try:
-        session.add(get_javascript_fingerprint(user_id, headers, other_data))
+        session.add(
+            get_javascript_fingerprint(
+                user_id, collection_datetime, headers, other_data
+            )
+        )
         session.commit()
     except:  # noqa: E722
         print(traceback.format_exc())
@@ -73,9 +86,11 @@ def add_javascript_fingerprint(user_id, headers, other_data):
         session.close()
 
 
-def get_javascript_fingerprint(user_id, headers, other_data):
+def get_javascript_fingerprint(
+        user_id, collection_datetime, headers, other_data):
     return JavaScriptFingerprint(
         cookie_user_id=user_id,
+        collection_datetime=collection_datetime,
         **headers_to_row_kwargs(headers),
         **javascript_data_to_row_kwargs(other_data)
     )

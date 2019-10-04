@@ -19,6 +19,8 @@ def home():
 
 @app.route('/fingerprint')
 def fingerprint():
+    collection_datetime = datetime.utcnow()
+
     headers = request_headers(
         'User-Agent',
         'Accept',
@@ -42,7 +44,9 @@ def fingerprint():
             USER_ID_KEY, user_id, max_age=max_age, expires=expires
         )
 
-    database.add_initial_request_fingerprint(user_id, headers)
+    database.add_initial_request_fingerprint(
+        user_id, collection_datetime, headers
+    )
     return response
 
 
@@ -55,12 +59,15 @@ def new_user_id():
 
 @app.route('/fingerprint-js', methods=['POST'])
 def fingerprint_js():
+    collection_datetime = datetime.utcnow()
     user_id = flask.request.cookies.get(USER_ID_KEY)
     headers = request_headers(
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
     other_data = json.loads(flask.request.form['fingerprint'])
-    database.add_javascript_fingerprint(user_id, headers, other_data)
+    database.add_javascript_fingerprint(
+        user_id, collection_datetime, headers, other_data
+    )
     return flask.jsonify(requestHeaders=headers, otherData=other_data)
 
 
