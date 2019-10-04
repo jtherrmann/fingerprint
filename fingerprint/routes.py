@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+from datetime import datetime, timedelta
 
 import flask
 
@@ -33,8 +34,13 @@ def fingerprint():
     user_id = flask.request.cookies.get(USER_ID_KEY)
     if user_id is None:
         user_id = new_user_id()
-        # TODO max_age, expires
-        response.set_cookie(USER_ID_KEY, user_id)
+
+        max_age = 365 * 24 * 3600
+        expires = datetime.utcnow() + timedelta(days=365)
+
+        response.set_cookie(
+            USER_ID_KEY, user_id, max_age=max_age, expires=expires
+        )
 
     database.add_initial_request_fingerprint(user_id, headers)
     return response
