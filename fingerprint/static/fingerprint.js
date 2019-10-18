@@ -9,10 +9,10 @@ function fingerprint() {
         },
         success: function(response) {
             $('#js-similarity')
-                .text('Overall similarity: ' + response.overallSimilarity);
+                .text('Overall similarity: ' + response.overall_similarity);
 
-            populateTable(response.requestHeaders, '#js-headers');
-            populateTable(response.otherData, '#js-other-data');
+            populateTable(response.headers_results, '#js-headers');
+            populateTable(response.js_data_results, '#js-other-data');
 
             $('#js-results').show();
         },

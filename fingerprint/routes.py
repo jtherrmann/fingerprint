@@ -42,7 +42,7 @@ def fingerprint():
         'DNT',
         'Upgrade-Insecure-Requests'
     )
-    overall_similarity, headers_results = database.add_fingerprint(
+    results = database.add_fingerprint(
         database.InitialRequestFingerprint,
         user_id,
         collection_datetime,
@@ -52,8 +52,7 @@ def fingerprint():
     response.set_data(
         flask.render_template(
             'fingerprint.html',
-            overall_similarity=overall_similarity,
-            results=headers_results
+            **results
         )
     )
     return response
@@ -74,19 +73,14 @@ def fingerprint_js():
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
     other_data = json.loads(flask.request.form['fingerprint'])
-    overall_similarity, headers_results, other_data_results = \
-        database.add_fingerprint(
-            database.JavaScriptFingerprint,
-            user_id,
-            collection_datetime,
-            headers,
-            js_data=other_data
-        )
-    return flask.jsonify(
-        overallSimilarity=overall_similarity,
-        requestHeaders=headers_results,
-        otherData=other_data_results
+    results = database.add_fingerprint(
+        database.JavaScriptFingerprint,
+        user_id,
+        collection_datetime,
+        headers,
+        js_data=other_data
     )
+    return flask.jsonify(**results)
 
 
 def request_headers(*headers):

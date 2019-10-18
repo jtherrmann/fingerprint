@@ -59,26 +59,26 @@ def add_fingerprint(
         )
         session.commit()
 
-        fingerprint_similarity = overall_similarity(
+        results = dict()
+
+        results['overall_similarity'] = overall_similarity(
             session, fingerprint_type, row_kwargs
         )
 
-        headers_results = list(
+        results['headers_results'] = list(
             similarity_results(
                 session, fingerprint_type, headers, header_to_column_name
             )
         )
 
-        if js_data is None:
-            return fingerprint_similarity, headers_results
-
-        js_data_results = list(
-            similarity_results(
-                session, fingerprint_type, js_data, js_data_to_column_name
+        if js_data is not None:
+            results['js_data_results'] = list(
+                similarity_results(
+                    session, fingerprint_type, js_data, js_data_to_column_name
+                )
             )
-        )
 
-        return fingerprint_similarity, headers_results, js_data_results
+        return results
     except:  # noqa: E722
         session.rollback()
         raise
