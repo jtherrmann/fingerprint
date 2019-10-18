@@ -45,12 +45,14 @@ Session = sessionmaker()
 Session.configure(bind=ENGINE)
 
 
-def add_initial_request_fingerprint(user_id, collection_datetime, headers):
+def add_fingerprint(fingerprint_type, user_id, collection_datetime, *attrs):
     session = Session()
     try:
         session.add(
-            get_initial_request_fingerprint(
-                user_id, collection_datetime, headers
+            fingerprint_type(
+                cookie_user_id=user_id,
+                collection_datetime=collection_datetime,
+                **attrs_to_row_kwargs(attrs)
             )
         )
         session.commit()
@@ -61,55 +63,8 @@ def add_initial_request_fingerprint(user_id, collection_datetime, headers):
         session.close()
 
 
-def get_initial_request_fingerprint(user_id, collection_datetime, headers):
-    return InitialRequestFingerprint(
-        cookie_user_id=user_id,
-        collection_datetime=collection_datetime,
-        **headers_to_row_kwargs(headers)
-    )
-
-
-def add_javascript_fingerprint(
-        user_id, collection_datetime, headers, other_data):
-    session = Session()
-    try:
-        session.add(
-            get_javascript_fingerprint(
-                user_id, collection_datetime, headers, other_data
-            )
-        )
-        session.commit()
-    except:  # noqa: E722
-        print(traceback.format_exc())
-        session.rollback()
-    finally:
-        session.close()
-
-
-def get_javascript_fingerprint(
-        user_id, collection_datetime, headers, other_data):
-    return JavaScriptFingerprint(
-        cookie_user_id=user_id,
-        collection_datetime=collection_datetime,
-        **headers_to_row_kwargs(headers),
-        **javascript_data_to_row_kwargs(other_data)
-    )
-
-
-def headers_to_row_kwargs(headers):
-    return {header_to_column_name(k): v for k, v in headers}
-
-
-def header_to_column_name(header_key):
-    return header_key.lower().replace('-', '_')
-
-
-def javascript_data_to_row_kwargs(data):
-    return {javascript_data_key_to_column_name(k): v for k, v in data}
-
-
-def javascript_data_key_to_column_name(key):
-    return key.lower().replace(' ', '_')
+def attrs_to_row_kwargs(attrs):
+    return {k: v for k, v in attrs}
 
 
 def cookie_id_already_exists(cookie_id):

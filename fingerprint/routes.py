@@ -44,10 +44,23 @@ def fingerprint():
             USER_ID_KEY, user_id, max_age=max_age, expires=expires
         )
 
-    database.add_initial_request_fingerprint(
-        user_id, collection_datetime, headers
+    database.add_fingerprint(
+        database.InitialRequestFingerprint,
+        user_id,
+        collection_datetime,
+        *translate_headers(headers)
     )
     return response
+
+
+# TODO temp
+def translate_headers(headers):
+    return [(translate_header(k), v) for k, v in headers]
+
+
+# TODO temp
+def translate_header(header):
+    return header.lower().replace('-', '_')
 
 
 def new_user_id():
@@ -65,10 +78,24 @@ def fingerprint_js():
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
     other_data = json.loads(flask.request.form['fingerprint'])
-    database.add_javascript_fingerprint(
-        user_id, collection_datetime, headers, other_data
+    database.add_fingerprint(
+        database.JavaScriptFingerprint,
+        user_id,
+        collection_datetime,
+        *translate_headers(headers),
+        *translate_other_data(other_data)
     )
     return flask.jsonify(requestHeaders=headers, otherData=other_data)
+
+
+# TODO temp
+def translate_other_data(other_data):
+    return [(translate_other_data_key(k), v) for k, v in other_data]
+
+
+# TODO temp
+def translate_other_data_key(key):
+    return key.lower().replace(' ', '_')
 
 
 def request_headers(*headers):
