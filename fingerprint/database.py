@@ -1,5 +1,4 @@
 import os
-import traceback
 
 import sqlalchemy
 from sqlalchemy import Column, DateTime, Integer, String
@@ -45,7 +44,6 @@ Session = sessionmaker()
 Session.configure(bind=ENGINE)
 
 
-# TODO propagate exceptions to caller
 def add_fingerprint(
         fingerprint_type, user_id, collection_datetime, headers, js_data=None):
     session = Session()
@@ -63,8 +61,8 @@ def add_fingerprint(
         # TODO temp
         return [(k, v, '25%') for k, v in headers]
     except:  # noqa: E722
-        print(traceback.format_exc())
         session.rollback()
+        raise
     finally:
         session.close()
 
