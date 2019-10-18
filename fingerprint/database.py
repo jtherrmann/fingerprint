@@ -58,13 +58,24 @@ def add_fingerprint(
         )
         session.commit()
 
-        # TODO temp
-        return [(k, v, '25%') for k, v in headers]
+        return list(similarity_results(session, fingerprint_type, headers))
     except:  # noqa: E722
         session.rollback()
         raise
     finally:
         session.close()
+
+
+def similarity_results(session, fingerprint_type, headers):
+    total = session.query(fingerprint_type).count()
+    for k, v in headers:
+        col_name = header_to_column_name(k)
+        count = session\
+            .query(fingerprint_type)\
+            .filter_by(**{col_name: v})\
+            .count()
+        percent = f'{round(count/total*100, 2)}%'
+        yield k, v, percent
 
 
 def headers_to_row_kwargs(headers):
