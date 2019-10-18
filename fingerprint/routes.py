@@ -70,14 +70,16 @@ def fingerprint_js():
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
     other_data = json.loads(flask.request.form['fingerprint'])
-    database.add_fingerprint(
+    headers_results, other_data_results = database.add_fingerprint(
         database.JavaScriptFingerprint,
         user_id,
         collection_datetime,
         headers,
         js_data=other_data
     )
-    return flask.jsonify(requestHeaders=headers, otherData=other_data)
+    return flask.jsonify(
+        requestHeaders=headers_results, otherData=other_data_results
+    )
 
 
 def request_headers(*headers):

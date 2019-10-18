@@ -21,19 +21,22 @@ function fingerprint() {
 }
 
 
-function populateTable(kvpairs, tableId) {
-    for (var i in kvpairs) {
+function populateTable(results, tableId) {
+    for (var i in results) {
         let table = $(tableId);
         let row = $('<tr />');
 
         let keyCell = $('<td class="key-cell" />');
         let valCell = $('<td class="val-cell" />');
+        let similarityCell = $('<td class="similarity-cell" />');
 
-        keyCell.text(kvpairs[i][0]);
-        valCell.text(kvpairs[i][1]);
+        keyCell.text(results[i][0]);
+        valCell.text(results[i][1]);
+        similarityCell.text(results[i][2]);
 
         row.append(keyCell);
         row.append(valCell);
+        row.append(similarityCell);
 
         table.append(row);
     }

@@ -58,7 +58,17 @@ def add_fingerprint(
         )
         session.commit()
 
-        return list(similarity_results(session, fingerprint_type, headers))
+        headers_results = list(
+            similarity_results(session, fingerprint_type, headers)
+        )
+
+        if js_data is None:
+            return headers_results
+
+        # TODO temp
+        js_data_results = [(k, v, '25%') for k, v in js_data]
+
+        return headers_results, js_data_results
     except:  # noqa: E722
         session.rollback()
         raise
