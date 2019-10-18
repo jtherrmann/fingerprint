@@ -48,19 +48,9 @@ def fingerprint():
         database.InitialRequestFingerprint,
         user_id,
         collection_datetime,
-        *translate_headers(headers)
+        headers
     )
     return response
-
-
-# TODO temp
-def translate_headers(headers):
-    return [(translate_header(k), v) for k, v in headers]
-
-
-# TODO temp
-def translate_header(header):
-    return header.lower().replace('-', '_')
 
 
 def new_user_id():
@@ -82,20 +72,10 @@ def fingerprint_js():
         database.JavaScriptFingerprint,
         user_id,
         collection_datetime,
-        *translate_headers(headers),
-        *translate_other_data(other_data)
+        headers,
+        js_data=other_data
     )
     return flask.jsonify(requestHeaders=headers, otherData=other_data)
-
-
-# TODO temp
-def translate_other_data(other_data):
-    return [(translate_other_data_key(k), v) for k, v in other_data]
-
-
-# TODO temp
-def translate_other_data_key(key):
-    return key.lower().replace(' ', '_')
 
 
 def request_headers(*headers):

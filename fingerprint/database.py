@@ -45,14 +45,16 @@ Session = sessionmaker()
 Session.configure(bind=ENGINE)
 
 
-def add_fingerprint(fingerprint_type, user_id, collection_datetime, *attrs):
+def add_fingerprint(
+        fingerprint_type, user_id, collection_datetime, headers, js_data=None):
     session = Session()
     try:
         session.add(
             fingerprint_type(
                 cookie_user_id=user_id,
                 collection_datetime=collection_datetime,
-                **attrs_to_row_kwargs(attrs)
+                **headers_to_row_kwargs(headers),
+                **js_data_to_row_kwargs(js_data)
             )
         )
         session.commit()
@@ -63,8 +65,21 @@ def add_fingerprint(fingerprint_type, user_id, collection_datetime, *attrs):
         session.close()
 
 
-def attrs_to_row_kwargs(attrs):
-    return {k: v for k, v in attrs}
+def headers_to_row_kwargs(headers):
+    return {header_to_column_name(k): v for k, v in headers}
+
+
+def header_to_column_name(key):
+    return key.lower().replace('-', '_')
+
+
+def js_data_to_row_kwargs(js_data):
+    return {} if js_data is None \
+        else {js_data_to_column_name(k): v for k, v in js_data}
+
+
+def js_data_to_column_name(key):
+    return key.lower().replace(' ', '_')
 
 
 def cookie_id_already_exists(cookie_id):
