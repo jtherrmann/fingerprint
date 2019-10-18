@@ -8,8 +8,12 @@ function fingerprint() {
             ])
         },
         success: function(response) {
+            $('#js-similarity')
+                .text('Overall similarity: ' + response.overallSimilarity);
+
             populateTable(response.requestHeaders, '#js-headers');
             populateTable(response.otherData, '#js-other-data');
+
             $('#js-results').show();
         },
         error: function(error) {

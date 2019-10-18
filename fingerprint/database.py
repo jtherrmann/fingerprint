@@ -48,15 +48,20 @@ def add_fingerprint(
         fingerprint_type, user_id, collection_datetime, headers, js_data=None):
     session = Session()
     try:
+        row_kwargs = get_row_kwargs(headers, js_data)
+
         session.add(
             fingerprint_type(
                 cookie_user_id=user_id,
                 collection_datetime=collection_datetime,
-                **headers_to_row_kwargs(headers),
-                **js_data_to_row_kwargs(js_data)
+                **row_kwargs
             )
         )
         session.commit()
+
+        fingerprint_similarity = overall_similarity(
+            session, fingerprint_type, row_kwargs
+        )
 
         headers_results = list(
             similarity_results(
@@ -65,7 +70,7 @@ def add_fingerprint(
         )
 
         if js_data is None:
-            return headers_results
+            return fingerprint_similarity, headers_results
 
         js_data_results = list(
             similarity_results(
@@ -73,7 +78,7 @@ def add_fingerprint(
             )
         )
 
-        return headers_results, js_data_results
+        return fingerprint_similarity, headers_results, js_data_results
     except:  # noqa: E722
         session.rollback()
         raise
@@ -89,8 +94,24 @@ def similarity_results(session, fingerprint_type, attrs, column_name_func):
             .query(fingerprint_type)\
             .filter_by(**{col_name: v})\
             .count()
-        percent = f'{round(count/total*100, 2)}%'
-        yield k, v, percent
+        percentage = get_percentage(count, total)
+        yield k, v, percentage
+
+
+def overall_similarity(session, fingerprint_type, row_kwargs):
+    total = session.query(fingerprint_type).count()
+    count = session.query(fingerprint_type).filter_by(**row_kwargs).count()
+    return get_percentage(count, total)
+
+
+def get_percentage(count, total):
+    return f'{round(count/total*100, 2)}%'
+
+
+def get_row_kwargs(headers, js_data):
+    kwargs = headers_to_row_kwargs(headers)
+    kwargs.update(js_data_to_row_kwargs(js_data))
+    return kwargs
 
 
 def headers_to_row_kwargs(headers):

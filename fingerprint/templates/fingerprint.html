@@ -15,6 +15,7 @@
     <p class="fingerprint-description">
       Headers from the initial request for this webpage.
     </p>
+    <p>Overall similarity: {{ overall_similarity }}</p>
     <table>
       {% for key, val, similarity in results %}
       <tr>
@@ -32,6 +33,7 @@
       Fingerprinting data collected via JavaScript, reported via an AJAX
       request.
     </p>
+    <p id="js-similarity"></p>
     <div id="js-results" hidden>
 
       <table id="js-headers">
