@@ -21,17 +21,7 @@ def home():
 def fingerprint():
     collection_datetime = datetime.utcnow()
 
-    headers = request_headers(
-        'User-Agent',
-        'Accept',
-        'Accept-Language',
-        'Accept-Encoding',
-        'DNT',
-        'Upgrade-Insecure-Requests'
-    )
-    response = flask.make_response(
-        flask.render_template('fingerprint.html', headers=headers)
-    )
+    response = flask.make_response()
 
     user_id = flask.request.cookies.get(USER_ID_KEY)
     if user_id is None:
@@ -44,11 +34,23 @@ def fingerprint():
             USER_ID_KEY, user_id, max_age=max_age, expires=expires
         )
 
+    headers = request_headers(
+        'User-Agent',
+        'Accept',
+        'Accept-Language',
+        'Accept-Encoding',
+        'DNT',
+        'Upgrade-Insecure-Requests'
+    )
     database.add_fingerprint(
         database.InitialRequestFingerprint,
         user_id,
         collection_datetime,
         headers
+    )
+
+    response.set_data(
+        flask.render_template('fingerprint.html', headers=headers)
     )
     return response
 
