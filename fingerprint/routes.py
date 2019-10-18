@@ -42,7 +42,7 @@ def fingerprint():
         'DNT',
         'Upgrade-Insecure-Requests'
     )
-    database.add_fingerprint(
+    results = database.add_fingerprint(
         database.InitialRequestFingerprint,
         user_id,
         collection_datetime,
@@ -50,7 +50,7 @@ def fingerprint():
     )
 
     response.set_data(
-        flask.render_template('fingerprint.html', headers=headers)
+        flask.render_template('fingerprint.html', results=results)
     )
     return response
 

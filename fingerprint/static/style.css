@@ -27,9 +27,13 @@ table > caption {
 }
 
 .key-cell {
-    width: 25%;
+    width: 20%;
 }
 
 .val-cell {
     font-family: mono;
+}
+
+.similarity-cell {
+    width: 10%;
 }

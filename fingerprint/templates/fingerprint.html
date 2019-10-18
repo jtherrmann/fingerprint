@@ -16,10 +16,11 @@
       Headers from the initial request for this webpage.
     </p>
     <table>
-      {% for key, val in headers %}
+      {% for key, val, similarity in results %}
       <tr>
         <td class="key-cell">{{ key }}</td>
         <td class="val-cell">{{ val }}</td>
+        <td class="similarity-cell">{{ similarity }}</td>
       </tr>
       {% endfor %}
     </table>
