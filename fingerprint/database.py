@@ -59,14 +59,19 @@ def add_fingerprint(
         session.commit()
 
         headers_results = list(
-            similarity_results(session, fingerprint_type, headers)
+            similarity_results(
+                session, fingerprint_type, headers, header_to_column_name
+            )
         )
 
         if js_data is None:
             return headers_results
 
-        # TODO temp
-        js_data_results = [(k, v, '25%') for k, v in js_data]
+        js_data_results = list(
+            similarity_results(
+                session, fingerprint_type, js_data, js_data_to_column_name
+            )
+        )
 
         return headers_results, js_data_results
     except:  # noqa: E722
@@ -76,10 +81,10 @@ def add_fingerprint(
         session.close()
 
 
-def similarity_results(session, fingerprint_type, headers):
+def similarity_results(session, fingerprint_type, attrs, column_name_func):
     total = session.query(fingerprint_type).count()
-    for k, v in headers:
-        col_name = header_to_column_name(k)
+    for k, v in attrs:
+        col_name = column_name_func(k)
         count = session\
             .query(fingerprint_type)\
             .filter_by(**{col_name: v})\

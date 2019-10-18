@@ -4,7 +4,7 @@ function fingerprint() {
         data: {
             fingerprint: JSON.stringify([
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
-                ['Timezone offset', new Date().getTimezoneOffset()]
+                ['Timezone offset', new Date().getTimezoneOffset().toString()]
             ])
         },
         success: function(response) {
