@@ -81,4 +81,4 @@ def fingerprint_js():
 
 
 def request_headers(*headers):
-    return [(header, flask.request.headers[header]) for header in headers]
+    return [(header, flask.request.headers.get(header)) for header in headers]

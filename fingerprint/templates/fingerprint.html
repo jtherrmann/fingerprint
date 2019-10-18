@@ -19,7 +19,7 @@
       {% for key, val, similarity in results %}
       <tr>
         <td class="key-cell">{{ key }}</td>
-        <td class="val-cell">{{ val }}</td>
+        <td class="val-cell">{{ val if val else '' }}</td>
         <td class="similarity-cell">{{ similarity }}</td>
       </tr>
       {% endfor %}
