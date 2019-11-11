@@ -4,6 +4,7 @@
   <head>
     <title>{% block title %}{% endblock %} - What's my fingerprint?</title>
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    {% block script %}{% endblock %}
   </head>
 
   <body>
@@ -11,7 +12,6 @@
       <a href="/">Home</a>
       <a href="/stats">Stats</a>
     </nav>
-
     {% block content %}{% endblock %}
   </body>
 

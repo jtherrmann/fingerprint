@@ -1,14 +1,13 @@
-<!doctype html>
-<html>
+{% extends 'base.html' %}
 
-  <head>
-    <title>What's my fingerprint?</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+{% block title %}Fingerprint{% endblock %}
+
+{% block script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/fingerprint.js"></script>
-  </head>
+{% endblock %}
 
-  <body>
+{% block content %}
     <!-- TODO switch to h1 and style as needed -->
 
     <h2>Initial request:</h2>
@@ -50,7 +49,4 @@
 
     <div id="js-fingerprint-error"></div>
     <noscript>JavaScript is not enabled.</noscript>
-
-  </body>
-
-</html>
+{% endblock %}
