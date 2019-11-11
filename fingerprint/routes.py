@@ -17,6 +17,11 @@ def home():
     return flask.render_template('home.html')
 
 
+@app.route('/stats')
+def stats():
+    return flask.render_template('stats.html')
+
+
 @app.route('/fingerprint')
 def fingerprint():
     collection_datetime = datetime.utcnow()
