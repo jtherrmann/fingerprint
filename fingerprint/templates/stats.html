@@ -3,5 +3,18 @@
 {% block title %}Stats{% endblock %}
 
 {% block content %}
-    TODO
+<!-- TODO indent -->
+
+<h1>Initial request:</h1>
+
+{% for col in initial_request_stats %}
+<h2>{{ col }}</h2>
+{% endfor %}
+
+<h1>JavaScript:</h1>
+
+{% for col in js_stats %}
+<h2>{{ col }}</h2>
+{% endfor %}
+
 {% endblock %}

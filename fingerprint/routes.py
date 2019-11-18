@@ -19,7 +19,15 @@ def home():
 
 @app.route('/stats')
 def stats():
-    return flask.render_template('stats.html')
+    initial_request_stats = database.get_stats(
+        database.InitialRequestFingerprint
+    )
+    js_stats = database.get_stats(database.JavaScriptFingerprint)
+    return flask.render_template(
+        'stats.html',
+        initial_request_stats=initial_request_stats,
+        js_stats=js_stats
+    )
 
 
 @app.route('/fingerprint')
