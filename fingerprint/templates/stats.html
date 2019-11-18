@@ -9,6 +9,22 @@
 
 {% for col in initial_request_stats %}
 <h2>{{ col }}</h2>
+
+<table>
+  <tr>
+    <th>Value</th>
+    <th class="stats-count-cell">Count</th>
+  </tr>
+
+  {% for val in initial_request_stats[col] %}
+  <tr>
+    <td class="val-cell">{{ val }}</td>
+    <td class="stats-count-cell">{{ initial_request_stats[col][val] }}</td>
+  </tr>
+  {% endfor %}
+
+</table>
+
 {% endfor %}
 
 <h1>JavaScript:</h1>

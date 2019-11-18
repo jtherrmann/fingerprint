@@ -9,11 +9,11 @@ table {
     width: 100%;
 }
 
-table, td {
+table, td, th {
     border: 1px solid black;
 }
 
-td {
+td, th {
     padding: 10px;
 }
 
@@ -35,5 +35,9 @@ table > caption {
 }
 
 .similarity-cell {
+    width: 10%;
+}
+
+.stats-count-cell {
     width: 10%;
 }
