@@ -1,4 +1,5 @@
 import os
+from collections import Counter
 
 import sqlalchemy
 from sqlalchemy import Column, DateTime, Integer, String
@@ -138,5 +139,20 @@ def cookie_id_already_exists(cookie_id):
             .query(InitialRequestFingerprint)\
             .filter_by(cookie_user_id=cookie_id)\
             .count() > 0
+    finally:
+        session.close()
+
+
+def get_stats(fingerprint_type):
+    columns = fingerprint_type.__table__.columns.keys()
+    stats = {col: Counter() for col in columns}
+    session = Session()
+    try:
+        rows = session.query(fingerprint_type)
+        for row in rows:
+            for col in columns:
+                value = getattr(row, col)
+                stats[col][value] += 1
+        return stats
     finally:
         session.close()
