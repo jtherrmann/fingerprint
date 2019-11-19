@@ -20,12 +20,12 @@ class InitialRequestFingerprint(Base):
     id = Column(Integer, primary_key=True)
     cookie_user_id = Column(String)
     collection_datetime = Column(DateTime)
-    user_agent = Column(String)
-    accept = Column(String)
-    accept_language = Column(String)
-    accept_encoding = Column(String)
-    dnt = Column(String)
-    upgrade_insecure_requests = Column(String)
+    header_user_agent = Column(String)
+    header_accept = Column(String)
+    header_accept_language = Column(String)
+    header_accept_encoding = Column(String)
+    header_dnt = Column(String)
+    header_upgrade_insecure_requests = Column(String)
 
 
 class JavaScriptFingerprint(Base):
@@ -33,11 +33,11 @@ class JavaScriptFingerprint(Base):
     id = Column(Integer, primary_key=True)
     cookie_user_id = Column(String)
     collection_datetime = Column(DateTime)
-    user_agent = Column(String)
-    accept_language = Column(String)
-    accept_encoding = Column(String)
-    dnt = Column(String)
-    timezone_offset = Column(String)
+    header_user_agent = Column(String)
+    header_accept_language = Column(String)
+    header_accept_encoding = Column(String)
+    header_dnt = Column(String)
+    js_timezone_offset = Column(String)
 
 
 Base.metadata.create_all(ENGINE)
@@ -118,7 +118,7 @@ def headers_to_row_kwargs(headers):
 
 
 def header_to_column_name(key):
-    return key.lower().replace('-', '_')
+    return 'header_' + key.lower().replace('-', '_')
 
 
 def js_data_to_row_kwargs(js_data):
@@ -127,7 +127,7 @@ def js_data_to_row_kwargs(js_data):
 
 
 def js_data_to_column_name(key):
-    return key.lower().replace(' ', '_')
+    return 'js_' + key.lower().replace(' ', '_')
 
 
 def cookie_id_already_exists(cookie_id):
