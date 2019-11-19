@@ -38,10 +38,6 @@ table > caption {
     font-family: mono;
 }
 
-.similarity-cell {
-    width: 10%;
-}
-
-.stats-count-cell {
+.percentage-cell {
     width: 10%;
 }

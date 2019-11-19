@@ -32,7 +32,7 @@ function populateTable(results, tableId) {
 
         let keyCell = $('<td class="key-cell" />');
         let valCell = $('<td class="val-cell" />');
-        let similarityCell = $('<td class="similarity-cell" />');
+        let similarityCell = $('<td class="percentage-cell" />');
 
         keyCell.text(results[i][0]);
         valCell.text(results[i][1]);

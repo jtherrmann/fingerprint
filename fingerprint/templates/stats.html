@@ -15,15 +15,13 @@
 <table>
   <tr>
     <th>Value</th>
-    <th class="stats-count-cell">Count</th>
-    <th class="stats-count-cell">Percentage</th>
+    <th class="percentage-cell">Percentage</th>
   </tr>
 
   {% for val, count in stats[col].most_common() %}
   <tr>
     <td class="val-cell">{{ val }}</td>
-    <td class="stats-count-cell">{{ count }}</td>
-    <td class="stats-count-cell">{{ get_percentage(count, total) }}</td>
+    <td class="percentage-cell">{{ get_percentage(count, total) }}</td>
   </tr>
   {% endfor %}
 
