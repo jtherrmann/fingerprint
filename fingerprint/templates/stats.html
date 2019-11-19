@@ -10,7 +10,7 @@
 <p>Total: {{ initial_request_total }}</p>
 
 {% for col in initial_request_stats %}
-<h2>{{ col }}</h2>
+<h2>{{ format_database_column_name(col) }}</h2>
 
 <table>
   <tr>
@@ -34,7 +34,7 @@
 <h1>JavaScript:</h1>
 
 {% for col in js_stats %}
-<h2>{{ col }}</h2>
+<h2>{{ format_database_column_name(col) }}</h2>
 {% endfor %}
 
 {% endblock %}

@@ -142,7 +142,10 @@ def cookie_id_already_exists(cookie_id):
 
 
 def get_stats(fingerprint_type):
-    columns = fingerprint_type.__table__.columns.keys()
+    columns = [
+        col for col in fingerprint_type.__table__.columns.keys()
+        if col.startswith('header_') or col.startswith('js_')
+    ]
     stats = {col: Counter() for col in columns}
     session = Session()
     try:

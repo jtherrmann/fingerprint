@@ -30,6 +30,7 @@ def stats():
         initial_request_total=initial_request_total,
         js_stats=js_stats,
         js_total=js_total,
+        format_database_column_name=util.format_database_column_name,
         get_percentage=util.get_percentage
     )
 
