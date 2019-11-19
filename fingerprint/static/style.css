@@ -21,11 +21,6 @@ th {
     text-align: left;
 }
 
-table > caption {
-    padding-bottom: 5px;
-    text-align: left;
-}
-
 .fingerprint-description {
     font-style: italic;
 }

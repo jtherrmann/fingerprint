@@ -14,6 +14,12 @@
 </p>
 <p>Overall similarity: {{ overall_similarity }}</p>
 <table>
+  <tr>
+    <th>Header</th>
+    <th>Value</th>
+    <th>Similarity</th>
+  </tr>
+
   {% for key, val, similarity in headers_results %}
   <tr>
     <td class="key-cell">{{ key }}</td>
@@ -34,13 +40,21 @@
 <div id="js-results" hidden>
 
   <table id="js-headers">
-    <caption>Request headers</caption>
+    <tr>
+      <th>Header</th>
+      <th>Value</th>
+      <th>Similarity</th>
+    </tr>
   </table>
 
   <br />
 
   <table id="js-other-data">
-    <caption>JavaScript data</caption>
+    <tr>
+      <th>Other attribute</th>
+      <th>Value</th>
+      <th>Similarity</th>
+    </tr>
   </table>
 
 </div>
