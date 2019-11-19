@@ -19,11 +19,11 @@
     <th class="stats-count-cell">Percentage</th>
   </tr>
 
-  {% for val in initial_request_stats[col] %}
+  {% for val, count in initial_request_stats[col].most_common() %}
   <tr>
     <td class="val-cell">{{ val }}</td>
-    <td class="stats-count-cell">{{ initial_request_stats[col][val] }}</td>
-    <td class="stats-count-cell">{{ get_percentage(initial_request_stats[col][val], initial_request_total) }}</td>
+    <td class="stats-count-cell">{{ count }}</td>
+    <td class="stats-count-cell">{{ get_percentage(count, initial_request_total) }}</td>
   </tr>
   {% endfor %}
 
