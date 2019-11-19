@@ -20,7 +20,7 @@
 
   {% for val, count in stats[col].most_common() %}
   <tr>
-    <td class="val-cell">{{ val }}</td>
+    <td class="val-cell">{{ val if val else '' }}</td>
     <td class="percentage-cell">{{ get_percentage(count, total) }}</td>
   </tr>
   {% endfor %}
