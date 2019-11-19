@@ -3,48 +3,48 @@
 {% block title %}Fingerprint{% endblock %}
 
 {% block script %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/static/fingerprint.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/static/fingerprint.js"></script>
 {% endblock %}
 
 {% block content %}
-    <h1>Initial request:</h1>
-    <p class="fingerprint-description">
-      Headers from the initial request for this webpage.
-    </p>
-    <p>Overall similarity: {{ overall_similarity }}</p>
-    <table>
-      {% for key, val, similarity in headers_results %}
-      <tr>
-        <td class="key-cell">{{ key }}</td>
-        <td class="val-cell">{{ val if val else '' }}</td>
-        <td class="similarity-cell">{{ similarity }}</td>
-      </tr>
-      {% endfor %}
-    </table>
+<h1>Initial request:</h1>
+<p class="fingerprint-description">
+  Headers from the initial request for this webpage.
+</p>
+<p>Overall similarity: {{ overall_similarity }}</p>
+<table>
+  {% for key, val, similarity in headers_results %}
+  <tr>
+    <td class="key-cell">{{ key }}</td>
+    <td class="val-cell">{{ val if val else '' }}</td>
+    <td class="similarity-cell">{{ similarity }}</td>
+  </tr>
+  {% endfor %}
+</table>
 
-    <!-- TODO more vertical space here -->
+<!-- TODO more vertical space here -->
 
-    <h1>JavaScript:</h1>
-    <p class="fingerprint-description">
-      Fingerprinting data collected via JavaScript, reported via an AJAX
-      request.
-    </p>
-    <p id="js-similarity"></p>
-    <div id="js-results" hidden>
+<h1>JavaScript:</h1>
+<p class="fingerprint-description">
+  Fingerprinting data collected via JavaScript, reported via an AJAX
+  request.
+</p>
+<p id="js-similarity"></p>
+<div id="js-results" hidden>
 
-      <table id="js-headers">
-        <caption>Request headers</caption>
-      </table>
+  <table id="js-headers">
+    <caption>Request headers</caption>
+  </table>
 
-      <br />
+  <br />
 
-      <table id="js-other-data">
-        <caption>JavaScript data</caption>
-      </table>
+  <table id="js-other-data">
+    <caption>JavaScript data</caption>
+  </table>
 
-    </div>
+</div>
 
-    <div id="js-fingerprint-error"></div>
-    <noscript>JavaScript is not enabled.</noscript>
+<div id="js-fingerprint-error"></div>
+<noscript>JavaScript is not enabled.</noscript>
 {% endblock %}
