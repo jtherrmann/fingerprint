@@ -2,13 +2,14 @@
 
 {% block title %}Stats{% endblock %}
 
-{% block content %}
 
-<h1>Initial request:</h1>
+{% macro stats(header, stats, total) -%}
 
-<p>Total fingerprints: {{ initial_request_total }}</p>
+<h1>{{ header }}</h1>
 
-{% for col in initial_request_stats %}
+<p>Total fingerprints: {{ total }}</p>
+
+{% for col in stats %}
 <h2>{{ format_database_column_name(col) }}</h2>
 
 <table>
@@ -18,11 +19,11 @@
     <th class="stats-count-cell">Percentage</th>
   </tr>
 
-  {% for val, count in initial_request_stats[col].most_common() %}
+  {% for val, count in stats[col].most_common() %}
   <tr>
     <td class="val-cell">{{ val }}</td>
     <td class="stats-count-cell">{{ count }}</td>
-    <td class="stats-count-cell">{{ get_percentage(count, initial_request_total) }}</td>
+    <td class="stats-count-cell">{{ get_percentage(count, total) }}</td>
   </tr>
   {% endfor %}
 
@@ -30,10 +31,13 @@
 
 {% endfor %}
 
-<h1>JavaScript:</h1>
+{%- endmacro %}
 
-{% for col in js_stats %}
-<h2>{{ format_database_column_name(col) }}</h2>
-{% endfor %}
+
+{% block content %}
+
+{{ stats('Initial request:', initial_request_stats, initial_request_total) }}
+
+{{ stats('JavaScript:', js_stats, js_total) }}
 
 {% endblock %}
