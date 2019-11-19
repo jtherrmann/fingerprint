@@ -6,6 +6,8 @@ from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+from . import util
+
 
 # `DATABASE_URL` is set by Heroku.
 ENGINE = sqlalchemy.create_engine(os.environ['DATABASE_URL'])
@@ -95,18 +97,14 @@ def similarity_results(session, fingerprint_type, attrs, column_name_func):
             .query(fingerprint_type)\
             .filter_by(**{col_name: v})\
             .count()
-        percentage = get_percentage(count, total)
+        percentage = util.get_percentage(count, total)
         yield k, v, percentage
 
 
 def overall_similarity(session, fingerprint_type, row_kwargs):
     total = session.query(fingerprint_type).count()
     count = session.query(fingerprint_type).filter_by(**row_kwargs).count()
-    return get_percentage(count, total)
-
-
-def get_percentage(count, total):
-    return f'{round(count/total*100, 2)}%'
+    return util.get_percentage(count, total)
 
 
 def get_row_kwargs(headers, js_data):
