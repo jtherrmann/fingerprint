@@ -14,12 +14,14 @@
   <tr>
     <th>Value</th>
     <th class="stats-count-cell">Count</th>
+    <th class="stats-count-cell">Percentage</th>
   </tr>
 
   {% for val in initial_request_stats[col] %}
   <tr>
     <td class="val-cell">{{ val }}</td>
     <td class="stats-count-cell">{{ initial_request_stats[col][val] }}</td>
+    <td class="stats-count-cell">{{ get_percentage(initial_request_stats[col][val], initial_request_total) }}</td>
   </tr>
   {% endfor %}
 

@@ -151,6 +151,6 @@ def get_stats(fingerprint_type):
             for col in columns:
                 value = getattr(row, col)
                 stats[col][value] += 1
-        return stats
+        return stats, rows.count()
     finally:
         session.close()

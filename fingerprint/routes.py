@@ -7,6 +7,7 @@ import flask
 
 from . import app
 from . import database
+from . import util
 
 
 USER_ID_KEY = 'user-id'
@@ -19,14 +20,17 @@ def home():
 
 @app.route('/stats')
 def stats():
-    initial_request_stats = database.get_stats(
+    initial_request_stats, initial_request_total = database.get_stats(
         database.InitialRequestFingerprint
     )
-    js_stats = database.get_stats(database.JavaScriptFingerprint)
+    js_stats, js_total = database.get_stats(database.JavaScriptFingerprint)
     return flask.render_template(
         'stats.html',
         initial_request_stats=initial_request_stats,
-        js_stats=js_stats
+        initial_request_total=initial_request_total,
+        js_stats=js_stats,
+        js_total=js_total,
+        get_percentage=util.get_percentage
     )
 
 
