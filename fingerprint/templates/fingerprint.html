@@ -2,22 +2,49 @@
 
 {% block title %}Fingerprint{% endblock %}
 
+
 {% block script %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/fingerprint.js"></script>
 {% endblock %}
+
+
+{% macro overall_similarity_tooltip(span_id, similarity_value='') -%}
+<p>
+  <div class="tooltip">
+    Overall similarity:
+    <span class="tooltiptext-right" style="width:700px;">
+      Percentage of fingerprints identical to yours (a higher value indicates
+      better anonymity)
+    </span>
+  </div>
+  <span id="{{ span_id }}">{{ similarity_value }}</span>
+</p>
+{%- endmacro %}
+
+
+{% macro similarity_tooltip() -%}
+<div class="tooltip">
+  Similarity
+  <span class="tooltiptext-left" style="width:715px;">
+    Percentage of fingerprints that have the same value as yours does for the
+    given attribute
+  </span>
+</div>
+{%- endmacro %}
+
 
 {% block content %}
 <h1>Initial request:</h1>
 <p class="fingerprint-description">
   Headers from the initial request for this webpage.
 </p>
-<p>Overall similarity: {{ overall_similarity }}</p>
+{{ overall_similarity_tooltip('initial-request-overall-similarity', overall_similarity) }}
 <table>
   <tr>
     <th>Header</th>
     <th>Value</th>
-    <th>Similarity</th>
+    <th>{{ similarity_tooltip() }}</th>
   </tr>
 
   {% for key, val, similarity in headers_results %}
@@ -36,14 +63,14 @@
   Fingerprinting data collected via JavaScript, reported via an AJAX
   request.
 </p>
-<p id="js-similarity"></p>
+{{ overall_similarity_tooltip('js-overall-similarity') }}
 <div id="js-results" hidden>
 
   <table id="js-headers">
     <tr>
       <th>Header</th>
       <th>Value</th>
-      <th>Similarity</th>
+      <th>{{ similarity_tooltip() }}</th>
     </tr>
   </table>
 
@@ -53,7 +80,7 @@
     <tr>
       <th>Other attribute</th>
       <th>Value</th>
-      <th>Similarity</th>
+      <th>{{ similarity_tooltip() }}</th>
     </tr>
   </table>
 

@@ -36,3 +36,42 @@ th {
 .percentage-cell {
     width: 10%;
 }
+
+/* https://www.w3schools.com/css/css_tooltip.asp */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltiptext-left, .tooltiptext-right {
+    font-weight: normal;
+    visibility: hidden;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltiptext-left {
+    top: -5px;
+    right: 105%;
+}
+
+.tooltiptext-right {
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip:hover {
+    cursor: help;
+}
+
+.tooltip:hover .tooltiptext-left, .tooltip:hover .tooltiptext-right {
+    visibility: visible;
+}
