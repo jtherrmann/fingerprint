@@ -53,14 +53,19 @@ def add_fingerprint(
     try:
         row_kwargs = get_row_kwargs(headers, js_data)
 
-        session.add(
-            fingerprint_type(
-                cookie_user_id=user_id,
-                collection_datetime=collection_datetime,
-                **row_kwargs
+        if not fingerprint_exists(
+                session, fingerprint_type, row_kwargs, user_id):
+            session.add(
+                fingerprint_type(
+                    cookie_user_id=user_id,
+                    collection_datetime=collection_datetime,
+                    **row_kwargs
+                )
             )
-        )
-        session.commit()
+            session.commit()
+        else:
+            # TODO include in results, display on page
+            print('Fingerprint exists!')
 
         results = dict()
 
@@ -87,6 +92,13 @@ def add_fingerprint(
         raise
     finally:
         session.close()
+
+
+def fingerprint_exists(session, fingerprint_type, row_kwargs, cookie_user_id):
+    return session\
+        .query(fingerprint_type)\
+        .filter_by(cookie_user_id=cookie_user_id, **row_kwargs)\
+        .count() > 0
 
 
 def similarity_results(session, fingerprint_type, attrs, column_name_func):
