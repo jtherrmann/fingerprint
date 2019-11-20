@@ -39,6 +39,15 @@
 <p class="fingerprint-description">
   Headers from the initial request for this webpage.
 </p>
+
+{% if duplicate %}
+<p>
+  <b>Note:</b> Your fingerprint was not recorded because it appears you have
+  already visited this page and submitted the same fingerprint. If you believe
+  this is an error, please contact me. (TODO: link to contact page)
+</p>
+{% endif %}
+
 {{ overall_similarity_tooltip('initial-request-overall-similarity', overall_similarity) }}
 <table>
   <tr>

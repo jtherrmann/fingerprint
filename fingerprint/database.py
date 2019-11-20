@@ -51,6 +51,8 @@ def add_fingerprint(
         fingerprint_type, user_id, collection_datetime, headers, js_data=None):
     session = Session()
     try:
+        results = dict()
+
         row_kwargs = get_row_kwargs(headers, js_data)
 
         if not fingerprint_exists(
@@ -63,11 +65,9 @@ def add_fingerprint(
                 )
             )
             session.commit()
+            results['duplicate'] = False
         else:
-            # TODO include in results, display on page
-            print('Fingerprint exists!')
-
-        results = dict()
+            results['duplicate'] = True
 
         results['overall_similarity'] = overall_similarity(
             session, fingerprint_type, row_kwargs
