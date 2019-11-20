@@ -1,7 +1,40 @@
 body {
-    background-color: #f2f2f2;
+    background-color: white;
     color: black;
     font-family: sans-serif;
+    margin: 0;
+}
+
+body > * {
+    margin: 10px;
+}
+
+#nav-div {
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+nav {
+    background-color: #757575;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+nav > .clickable {
+    padding: 20px;
+}
+
+.clickable {
+    background-color: #757575;
+    color: white;
+    padding: 10px;
+
+    /* remove underline from links */
+    text-decoration: none;
+}
+
+.clickable:hover {
+    background-color: #555;
 }
 
 table {
@@ -79,9 +112,6 @@ th {
 /* https://www.w3schools.com/howto/howto_js_collapsible.asp */
 
 .stats-button, #stats-toggle-all {
-    background-color: #757575;
-    color: white;
-
     border: none;
     cursor: pointer;
     display: block;
@@ -95,10 +125,6 @@ th {
 #stats-toggle-all {
     padding: 10px;
     width: initial;
-}
-
-.stats-button:hover, #stats-toggle-all:hover {
-    background-color: #555;
 }
 
 .stats-table {

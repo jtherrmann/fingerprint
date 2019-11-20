@@ -11,13 +11,13 @@
 
 {% macro stats(header, stats, total) -%}
 
-<h1>{{ header }}</h1>
+<h2>{{ header }}</h2>
 
 <p>Total fingerprints: {{ total }}</p>
 
 {% for col in stats %}
 
-<button type="button" class="stats-button">{{ format_database_column_name(col) }}</button>
+<button type="button" class="clickable stats-button">{{ format_database_column_name(col) }}</button>
 
 <div class="stats-table">
   <table>
@@ -46,8 +46,10 @@
 
 {% block content %}
 
+<h1>All results</h1>
+
 <p>
-  <button type="button" id="stats-toggle-all">Show all</button>
+  <button type="button" id="stats-toggle-all" class="clickable">Show all</button>
 </p>
 
 {{ stats('Initial request:', initial_request_stats, initial_request_total) }}
