@@ -8,6 +8,9 @@ function fingerprint() {
             ])
         },
         success: function(response) {
+            if (response.duplicate)
+                $('#js-duplicate').show()
+
             $('#js-overall-similarity').text(response.overall_similarity);
 
             populateTable(response.headers_results, '#js-headers');

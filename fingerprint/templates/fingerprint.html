@@ -9,6 +9,15 @@
 {% endblock %}
 
 
+{% macro duplicate_message() -%}
+<p>
+  <b>Note:</b> Your fingerprint was not recorded because it appears you have
+  already visited this page and submitted the same fingerprint. If you believe
+  this is an error, please contact me. (TODO: link to contact page)
+</p>
+{%- endmacro %}
+
+
 {% macro overall_similarity_tooltip(span_id, similarity_value='') -%}
 <p>
   <div class="tooltip">
@@ -40,13 +49,7 @@
   Headers from the initial request for this webpage.
 </p>
 
-{% if duplicate %}
-<p>
-  <b>Note:</b> Your fingerprint was not recorded because it appears you have
-  already visited this page and submitted the same fingerprint. If you believe
-  this is an error, please contact me. (TODO: link to contact page)
-</p>
-{% endif %}
+{% if duplicate %}{{ duplicate_message() }}{% endif %}
 
 {{ overall_similarity_tooltip('initial-request-overall-similarity', overall_similarity) }}
 <table>
@@ -72,6 +75,9 @@
   Fingerprinting data collected via JavaScript, reported via an AJAX
   request.
 </p>
+
+<div id="js-duplicate" hidden>{{ duplicate_message() }}</div>
+
 {{ overall_similarity_tooltip('js-overall-similarity') }}
 <div id="js-results" hidden>
 
