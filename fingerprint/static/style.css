@@ -75,3 +75,27 @@ th {
 .tooltip:hover .tooltiptext-left, .tooltip:hover .tooltiptext-right {
     visibility: visible;
 }
+
+/* https://www.w3schools.com/howto/howto_js_collapsible.asp */
+
+.stats-button {
+    background-color: #757575;
+    color: white;
+
+    border: none;
+    cursor: pointer;
+    display: block;
+    font-size: inherit;
+    outline: none;
+    padding: 18px;
+    text-align: left;
+    width: 100%;
+}
+
+.stats-button:hover {
+    background-color: #555;
+}
+
+.stats-table {
+    display: none;
+}

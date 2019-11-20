@@ -3,6 +3,12 @@
 {% block title %}Stats{% endblock %}
 
 
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/static/stats.js"></script>
+{% endblock %}
+
+
 {% macro stats(header, stats, total) -%}
 
 <h1>{{ header }}</h1>
@@ -10,22 +16,28 @@
 <p>Total fingerprints: {{ total }}</p>
 
 {% for col in stats %}
-<h2>{{ format_database_column_name(col) }}</h2>
 
-<table>
-  <tr>
-    <th>Value</th>
-    <th>Percentage</th>
-  </tr>
+<button type="button" class="stats-button">{{ format_database_column_name(col) }}</button>
 
-  {% for val, count in stats[col].most_common() %}
-  <tr>
-    <td class="val-cell">{{ val if val else '' }}</td>
-    <td class="percentage-cell">{{ get_percentage(count, total) }}</td>
-  </tr>
-  {% endfor %}
+<div class="stats-table">
+  <table>
+    <tr>
+      <th>Value</th>
+      <th>Percentage</th>
+    </tr>
 
-</table>
+    {% for val, count in stats[col].most_common() %}
+    <tr>
+      <td class="val-cell">{{ val if val else '' }}</td>
+      <td class="percentage-cell">{{ get_percentage(count, total) }}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</div>
+
+<!-- vertical space -->
+<p></p>
 
 {% endfor %}
 
