@@ -46,6 +46,10 @@
 
 {% block content %}
 
+<p>
+  <button type="button" id="stats-toggle-all">Show all</button>
+</p>
+
 {{ stats('Initial request:', initial_request_stats, initial_request_total) }}
 
 {{ stats('JavaScript:', js_stats, js_total) }}

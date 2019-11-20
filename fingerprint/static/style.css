@@ -78,7 +78,7 @@ th {
 
 /* https://www.w3schools.com/howto/howto_js_collapsible.asp */
 
-.stats-button {
+.stats-button, #stats-toggle-all {
     background-color: #757575;
     color: white;
 
@@ -92,7 +92,12 @@ th {
     width: 100%;
 }
 
-.stats-button:hover {
+#stats-toggle-all {
+    padding: 10px;
+    width: initial;
+}
+
+.stats-button:hover, #stats-toggle-all:hover {
     background-color: #555;
 }
 
