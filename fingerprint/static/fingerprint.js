@@ -25,7 +25,7 @@ function fingerprint() {
 
 
 function populateTable(results, tableId) {
-    for (var i in results) {
+    for (let i = 0; i < results.length; i++) {
         let table = $(tableId);
         let row = $('<tr />');
 

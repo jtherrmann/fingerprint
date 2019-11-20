@@ -12,7 +12,7 @@ function statsButtonHandler() {
 
 $(document).ready(function() {
     let buttons = $('.stats-button');
-    for (let i in buttons) {
+    for (let i = 0; i < buttons.length; i++) {
         buttons[i].onclick = statsButtonHandler;
     }
 });
