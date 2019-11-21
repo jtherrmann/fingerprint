@@ -15,6 +15,8 @@
 
 <p>Total fingerprints: {{ total }}</p>
 
+<div class="spacer" />
+
 {% for col in stats %}
 
 <button type="button" class="clickable stats-button">{{ format_database_column_name(col) }}</button>
@@ -36,8 +38,7 @@
   </table>
 </div>
 
-<!-- vertical space -->
-<p></p>
+<div class="spacer" />
 
 {% endfor %}
 
@@ -52,7 +53,15 @@
   <button type="button" id="stats-toggle-all" class="clickable">Show all</button>
 </p>
 
+<div class="spacer" />
+<div class="spacer" />
+<div class="spacer" />
+
 {{ stats('Initial request:', initial_request_stats, initial_request_total) }}
+
+<div class="spacer" />
+<div class="spacer" />
+<div class="spacer" />
 
 {{ stats('JavaScript:', js_stats, js_total) }}
 
