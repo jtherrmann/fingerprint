@@ -20,8 +20,7 @@
 
 
 {% macro overall_similarity_tooltip(span_id, similarity_value='') -%}
-<div style="padding-top:2px;"></div>
-<p>
+<div class="overall-similarity-div">
   <div class="tooltip">
     Overall similarity:
     <span class="tooltiptext-right" style="width:700px;">
@@ -30,7 +29,7 @@
     </span>
   </div>
   <span id="{{ span_id }}">{{ similarity_value }}</span>
-</p>
+</div>
 {%- endmacro %}
 
 
@@ -54,6 +53,7 @@
 {% if duplicate %}{{ duplicate_message() }}{% endif %}
 
 {{ overall_similarity_tooltip('initial-request-overall-similarity', overall_similarity) }}
+
 <table>
   <tr>
     <th>Header</th>
@@ -82,7 +82,8 @@
 <div id="js-duplicate" hidden>{{ duplicate_message() }}</div>
 
 <div id="js-results" hidden>
-  {{ overall_similarity_tooltip('js-overall-similarity') }}
+
+{{ overall_similarity_tooltip('js-overall-similarity') }}
 
   <table id="js-headers">
     <tr>

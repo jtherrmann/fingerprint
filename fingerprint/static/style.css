@@ -38,6 +38,11 @@ nav > .clickable {
     background-color: #555;
 }
 
+.overall-similarity-div {
+    padding-top: 15px;
+    padding-bottom: 25px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
