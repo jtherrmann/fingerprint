@@ -15,14 +15,14 @@ function fingerprint() {
                 ['App code name', navigator.appCodeName],
                 ['App version', navigator.appVersion],
                 ['Build id', navigator.buildID],
-                ['Cookies enabled', navigator.cookieEnabled.toString()],
+                ['Cookies enabled', navigator.cookieEnabled],
                 ['Do not track', navigator.doNotTrack],
-                ['Hardware concurrency', navigator.hardwareConcurrency.toString()],
+                ['Hardware concurrency', navigator.hardwareConcurrency],
 
-                ['Java enabled', navigator.javaEnabled().toString()],
+                ['Java enabled', navigator.javaEnabled()],
 
                 ['Language', navigator.language],
-                ['Max touch points', navigator.maxTouchPoints.toString()],
+                ['Max touch points', navigator.maxTouchPoints],
                 ['Platform', navigator.platform],
 
                 ['Plugins', getPlugins()],
@@ -31,9 +31,9 @@ function fingerprint() {
                 ['Product sub', navigator.productSub],
                 ['Vendor', navigator.vendor],
                 ['Vendor sub', navigator.vendorSub],
-                ['Web driver', navigator.webdriver.toString()],
+                ['Web driver', navigator.webdriver],
 
-            ])
+            ].map(processPair))
         },
         success: function(response) {
             if (response.duplicate)
@@ -55,9 +55,21 @@ function fingerprint() {
 }
 
 
+function processPair(pair) {
+    return [pair[0], toString(pair[1])];
+}
+
+
+function toString(x) {
+    if (x != undefined)
+        return x.toString();
+    return 'undefined';
+}
+
+
 function getTimezoneOffset() {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
-    return new Date().getTimezoneOffset().toString();
+    return new Date().getTimezoneOffset();
 }
 
 
