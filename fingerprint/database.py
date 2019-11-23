@@ -38,6 +38,7 @@ class JavaScriptFingerprint(Base):
     header_accept_encoding = Column(String)
     header_dnt = Column(String)
     js_timezone_offset = Column(String)
+    js_plugins = Column(String)
 
 
 Base.metadata.create_all(ENGINE)

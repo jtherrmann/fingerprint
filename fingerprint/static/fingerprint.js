@@ -5,6 +5,7 @@ function fingerprint() {
             fingerprint: JSON.stringify([
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
                 ['Timezone offset', getTimezoneOffset()],
+                ['Plugins', getPlugins()]
             ])
         },
         success: function(response) {
@@ -29,6 +30,22 @@ function fingerprint() {
 
 function getTimezoneOffset() {
     return new Date().getTimezoneOffset().toString();
+}
+
+
+function getPlugins() {
+    let plugins = navigator.plugins;
+    let pluginsList = '';
+
+    for (let i = 0; i < plugins.length; i++) {
+        pluginsList += 'Plugin ' + i + ': ';
+        pluginsList += plugins[i].name + ', ';
+        pluginsList += plugins[i].version + ', ';
+        pluginsList += plugins[i].description + ', ';
+        pluginsList += plugins[i].filename + ';';
+    }
+
+    return pluginsList;
 }
 
 
