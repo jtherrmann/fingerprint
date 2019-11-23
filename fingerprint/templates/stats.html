@@ -15,7 +15,7 @@
 
 <p>Total fingerprints: {{ total }}</p>
 
-<div class="spacer" />
+<br />
 
 {% for col in stats %}
 
@@ -38,7 +38,7 @@
   </table>
 </div>
 
-<div class="spacer" />
+<div style="padding-top:10px;"></div>
 
 {% endfor %}
 
@@ -53,15 +53,11 @@
   <button type="button" id="stats-toggle-all" class="clickable">Show all</button>
 </p>
 
-<div class="spacer" />
-<div class="spacer" />
-<div class="spacer" />
+<div style="padding-top:30px;"></div>
 
 {{ stats('Initial request', initial_request_stats, initial_request_total) }}
 
-<div class="spacer" />
-<div class="spacer" />
-<div class="spacer" />
+<div style="padding-top:30px;"></div>
 
 {{ stats('JavaScript', js_stats, js_total) }}
 
