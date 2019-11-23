@@ -43,6 +43,11 @@ nav > .clickable {
     padding-bottom: 25px;
 }
 
+.unique-count-div {
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

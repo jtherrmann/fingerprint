@@ -15,7 +15,16 @@
 
 <p>Total fingerprints: {{ total }}</p>
 
-<p>Unique fingerprints: {{ unique }}</p>
+<div class="unique-count-div">
+  <div class="tooltip">
+    Unique fingerprints:
+    <span class="tooltiptext-right" style="width:625px;">
+      Result of converting a list of all fingerprints into a set of unique
+      fingerprints.
+    </span>
+  </div>
+  {{ unique }}
+</div>
 
 <br />
 
