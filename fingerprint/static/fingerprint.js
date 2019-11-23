@@ -35,14 +35,13 @@ function getTimezoneOffset() {
 
 function getPlugins() {
     let plugins = navigator.plugins;
-    let pluginsList = '';
+    let pluginsList = "";
 
     for (let i = 0; i < plugins.length; i++) {
-        pluginsList += 'Plugin ' + i + ': ';
-        pluginsList += plugins[i].name + ', ';
-        pluginsList += plugins[i].version + ', ';
-        pluginsList += plugins[i].description + ', ';
-        pluginsList += plugins[i].filename + ';';
+        pluginsList += "Name: '" + plugins[i].name + "', ";
+        pluginsList += "Version: '" + plugins[i].version + "', ";
+        pluginsList += "Description: '" + plugins[i].description + "', ";
+        pluginsList += "Filename: '" + plugins[i].filename + "'; ";
     }
 
     return pluginsList;
