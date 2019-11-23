@@ -20,16 +20,23 @@ def home():
 
 @app.route('/stats')
 def stats():
-    initial_request_stats, initial_request_total = database.get_stats(
-        database.InitialRequestFingerprint
-    )
-    js_stats, js_total = database.get_stats(database.JavaScriptFingerprint)
+    initial_request_stats, initial_request_total, initial_request_unique =\
+        database.get_stats(database.InitialRequestFingerprint)
+
+    js_stats, js_total, js_unique =\
+        database.get_stats(database.JavaScriptFingerprint)
+
     return flask.render_template(
         'stats.html',
+
         initial_request_stats=initial_request_stats,
         initial_request_total=initial_request_total,
+        initial_request_unique=initial_request_unique,
+
         js_stats=js_stats,
         js_total=js_total,
+        js_unique=js_unique,
+
         format_database_column_name=util.format_database_column_name,
         get_percentage=util.get_percentage
     )

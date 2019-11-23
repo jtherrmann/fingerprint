@@ -9,11 +9,13 @@
 {% endblock %}
 
 
-{% macro stats(header, stats, total) -%}
+{% macro stats(header, stats, total, unique) -%}
 
 <h2>{{ header }}</h2>
 
 <p>Total fingerprints: {{ total }}</p>
+
+<p>Unique fingerprints: {{ unique }}</p>
 
 <br />
 
@@ -55,10 +57,10 @@
 
 <div style="padding-top:30px;"></div>
 
-{{ stats('Initial request', initial_request_stats, initial_request_total) }}
+{{ stats('Initial request', initial_request_stats, initial_request_total, initial_request_unique) }}
 
 <div style="padding-top:30px;"></div>
 
-{{ stats('JavaScript', js_stats, js_total) }}
+{{ stats('JavaScript', js_stats, js_total, js_unique) }}
 
 {% endblock %}

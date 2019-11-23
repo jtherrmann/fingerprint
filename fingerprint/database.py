@@ -174,14 +174,15 @@ def get_stats(fingerprint_type):
         col for col in fingerprint_type.__table__.columns.keys()
         if col.startswith('header_') or col.startswith('js_')
     ]
+    col_attrs = [getattr(fingerprint_type, col) for col in columns]
     stats = {col: Counter() for col in columns}
     session = Session()
     try:
-        rows = session.query(fingerprint_type)
+        rows = session.query(*col_attrs)
         for row in rows:
             for col in columns:
                 value = getattr(row, col)
                 stats[col][value] += 1
-        return stats, rows.count()
+        return stats, rows.count(), len(set(rows))
     finally:
         session.close()
