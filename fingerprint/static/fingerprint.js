@@ -3,7 +3,6 @@ function fingerprint() {
         url: '/fingerprint-js',
         data: {
             fingerprint: JSON.stringify([
-                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
                 ['Timezone offset', getTimezoneOffset()],
                 ['Plugins', getPlugins()]
             ])
@@ -29,6 +28,7 @@ function fingerprint() {
 
 
 function getTimezoneOffset() {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
     return new Date().getTimezoneOffset().toString();
 }
 
