@@ -4,7 +4,35 @@ function fingerprint() {
         data: {
             fingerprint: JSON.stringify([
                 ['Timezone offset', getTimezoneOffset()],
-                ['Plugins', getPlugins()]
+
+                // https://www.w3schools.com/jsref/obj_navigator.asp
+
+                // TODO more navigator properties, e.g. mediaDevices,
+                // permissions, etc.
+
+                // TODO # of navigator properties
+
+                ['App code name', navigator.appCodeName],
+                ['App version', navigator.appVersion],
+                ['Build id', navigator.buildID],
+                ['Cookies enabled', navigator.cookieEnabled.toString()],
+                ['Do not track', navigator.doNotTrack],
+                ['Hardware concurrency', navigator.hardwareConcurrency.toString()],
+
+                ['Java enabled', navigator.javaEnabled().toString()],
+
+                ['Language', navigator.language],
+                ['Max touch points', navigator.maxTouchPoints.toString()],
+                ['Platform', navigator.platform],
+
+                ['Plugins', getPlugins()],
+
+                ['Product', navigator.product],
+                ['Product sub', navigator.productSub],
+                ['Vendor', navigator.vendor],
+                ['Vendor sub', navigator.vendorSub],
+                ['Web driver', navigator.webdriver.toString()],
+
             ])
         },
         success: function(response) {
