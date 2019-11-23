@@ -23,9 +23,10 @@
 <div class="overall-similarity-div">
   <div class="tooltip">
     Overall similarity:
-    <span class="tooltiptext-right" style="width:700px;">
+    <span class="tooltiptext-right" style="width:615px;">
       Percentage of fingerprints identical to yours (a higher value indicates
-      better anonymity)
+      better anonymity). Note that your own fingerprint counts toward this
+      percentage.
     </span>
   </div>
   <span id="{{ span_id }}">{{ similarity_value }}</span>
@@ -36,9 +37,10 @@
 {% macro similarity_tooltip() -%}
 <div class="tooltip">
   Similarity
-  <span class="tooltiptext-left" style="width:715px;">
+  <span class="tooltiptext-left" style="width:630px;">
     Percentage of fingerprints that have the same value as yours does for the
-    given attribute
+    given attribute. Note that your own fingerprint counts toward this
+    percentage.
   </span>
 </div>
 {%- endmacro %}
