@@ -10,7 +10,7 @@ function fingerprint() {
         },
         success: function(response) {
             if (response.duplicate)
-                $('#js-duplicate').show()
+                $('#js-duplicate').show();
 
             $('#js-overall-similarity').text(response.overall_similarity);
 
