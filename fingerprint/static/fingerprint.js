@@ -91,11 +91,11 @@ function getPlugins() {
 function populateTable(results, tableId) {
     for (let i = 0; i < results.length; i++) {
         let table = $(tableId);
-        let row = $('<tr />');
+        let row = $('<tr>');
 
-        let keyCell = $('<td class="key-cell" />');
-        let valCell = $('<td class="val-cell" />');
-        let similarityCell = $('<td class="percentage-cell" />');
+        let keyCell = $('<td class="key-cell">');
+        let valCell = $('<td class="val-cell">');
+        let similarityCell = $('<td class="percentage-cell">');
 
         keyCell.text(results[i][0]);
         valCell.text(results[i][1]);
