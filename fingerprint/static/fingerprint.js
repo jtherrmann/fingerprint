@@ -66,13 +66,23 @@ function toString(x) {
 
 function getCanvasData() {
     // https://securehomes.esat.kuleuven.be/~gacar/persistent/the_web_never_forgets.pdf
+    // https://amiunique.org/fp
 
     let canvas = document.getElementById('canvas');
     let context = canvas.getContext('2d');
 
-    // TODO finish
-    context.font = '30px Arial';
-    context.fillText('Hello world', 10, 50);
+    let testStr = 'How  quickly  daft  jumping  zebras  vex 🤣 ,.!@#$%^&*()[]{}-_/?'
+
+    context.fillStyle = 'red';
+    context.fillRect(100, 30, 80, 50);
+
+    context.font = '32px Times New Roman';
+    context.fillStyle = 'blue';
+    context.fillText(testStr, 20, 70);
+
+    context.font = '20px Arial';
+    context.fillStyle = 'green';
+    context.fillText(testStr, 10, 50);
 
     return canvas.toDataURL();
 }
