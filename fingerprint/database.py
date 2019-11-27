@@ -65,6 +65,7 @@ class JavaScriptFingerprint(Base):
     js_vendor = Column(String)
     js_vendor_sub = Column(String)
     js_web_driver = Column(String)
+    js_webgl_hash = Column(String)
     js_webgl_vendor = Column(String)
     js_webgl_renderer = Column(String)
     js_webgl_unmasked_vendor = Column(String)

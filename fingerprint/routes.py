@@ -118,6 +118,11 @@ def process_js_data(js_data):
     canvas = next(pair for pair in js_data if pair[0] == 'Canvas hash')
     canvas[1] = canvas_hash(canvas[1])
 
+    webgl = next(pair for pair in js_data if pair[0] == 'WebGL hash')
+    webgl[1] = canvas_hash(webgl[1])
+
 
 def canvas_hash(canvas_str):
+    if canvas_str == 'undefined':
+        return canvas_str
     return sha256(canvas_str.encode()).hexdigest()

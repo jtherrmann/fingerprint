@@ -40,6 +40,7 @@ function fingerprint() {
                 ['Vendor', navigator.vendor],
                 ['Vendor sub', navigator.vendorSub],
                 ['Web driver', navigator.webdriver],
+                ['WebGL hash', getWebGLData()],
                 ['WebGL vendor', getWebGLVendor()],
                 ['WebGL renderer', getWebGLRenderer()],
                 ['WebGL unmasked vendor', getWebGLUnmaskedVendor()],
@@ -106,16 +107,18 @@ function getCanvasData() {
 }
 
 
-// TODO
-// function getWebGLData() {
+// TODO finish
+function getWebGLData() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
 
-//     // TODO
-//     // if (!gl)
-//     //     return '';
+    if (!gl)
+        return undefined;
 
-//     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-//     gl.clear(gl.COLOR_BUFFER_BIT);
-// }
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    return glcanvas.toDataURL();
+}
 
 
 function getWebGLVendor() {
@@ -192,11 +195,13 @@ function populateTable(results, tableId) {
     }
 }
 
-var gl, glext;
+var glcanvas, gl, glext;
 
 $(document).ready(function() {
     // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
-    gl = document.getElementById('webgl-canvas').getContext('webgl');
+    // https://stackoverflow.com/a/26790802
+    glcanvas = document.getElementById('webgl-canvas');
+    gl = glcanvas.getContext('webgl', {preserveDrawingBuffer: true});
 
     if (gl) {
         // https://stackoverflow.com/a/23791450
