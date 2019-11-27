@@ -42,6 +42,8 @@ function fingerprint() {
                 ['Web driver', navigator.webdriver],
                 ['WebGL vendor', getWebGLVendor()],
                 ['WebGL renderer', getWebGLRenderer()],
+                ['WebGL unmasked vendor', getWebGLUnmaskedVendor()],
+                ['WebGL unmasked renderer', getWebGLUnmaskedRenderer()],
 
             ].map(processPair))
         },
@@ -115,9 +117,24 @@ function getCanvasData() {
 //     gl.clear(gl.COLOR_BUFFER_BIT);
 // }
 
-// TODO check gl and glext separately, test result
 
 function getWebGLVendor() {
+    if (!gl)
+        return undefined;
+
+    return gl.getParameter(gl.VENDOR);
+}
+
+
+function getWebGLRenderer() {
+    if (!gl)
+        return undefined;
+
+    return gl.getParameter(gl.RENDERER);
+}
+
+
+function getWebGLUnmaskedVendor() {
     if (!gl || !glext)
         return undefined;
 
@@ -125,7 +142,7 @@ function getWebGLVendor() {
 }
 
 
-function getWebGLRenderer() {
+function getWebGLUnmaskedRenderer() {
     if (!gl || !glext)
         return undefined;
 
@@ -181,8 +198,10 @@ $(document).ready(function() {
     // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
     gl = document.getElementById('webgl-canvas').getContext('webgl');
 
-    // https://stackoverflow.com/a/23791450
-    glext = gl.getExtension('WEBGL_debug_renderer_info');
+    if (gl) {
+        // https://stackoverflow.com/a/23791450
+        glext = gl.getExtension('WEBGL_debug_renderer_info');
+    }
 
     fingerprint();
 });
