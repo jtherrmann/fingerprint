@@ -72,7 +72,6 @@ function getCanvasHash() {
     context.font = '30px Arial';
     context.fillText('Hello world', 10, 50);
 
-    // TODO hash
     return canvas.toDataURL();
 }
 

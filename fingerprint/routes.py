@@ -2,6 +2,7 @@ import base64
 import json
 import os
 from datetime import datetime, timedelta
+from hashlib import sha256
 
 import flask
 
@@ -98,6 +99,7 @@ def fingerprint_js():
         'User-Agent', 'Accept-Language', 'Accept-Encoding', 'DNT'
     )
     other_data = json.loads(flask.request.form['fingerprint'])
+    process_js_data(other_data)
     results = database.add_fingerprint(
         database.JavaScriptFingerprint,
         user_id,
@@ -110,3 +112,12 @@ def fingerprint_js():
 
 def request_headers(*headers):
     return [(header, flask.request.headers.get(header)) for header in headers]
+
+
+def process_js_data(js_data):
+    canvas = next(pair for pair in js_data if pair[0] == 'Canvas hash')
+    canvas[1] = canvas_hash(canvas[1])
+
+
+def canvas_hash(canvas_str):
+    return sha256(canvas_str.encode()).hexdigest()
