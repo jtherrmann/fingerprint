@@ -73,6 +73,9 @@ function getCanvasData() {
 
     let testStr = 'How  quickly  daft  jumping  zebras  vex 🤣 ,.!@#$%^&*()[]{}-_/?'
 
+    context.font = '20px NotARealFont';
+    context.fillText(testStr, 100, 100);
+
     context.fillStyle = 'red';
     context.fillRect(100, 30, 80, 50);
 
