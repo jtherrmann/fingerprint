@@ -15,7 +15,6 @@ function fingerprint() {
                 ['App code name', navigator.appCodeName],
                 ['App version', navigator.appVersion],
                 ['Build id', navigator.buildID],
-                ['Canvas hash', getCanvasData()],
                 ['Cookies enabled', navigator.cookieEnabled],
                 ['Do not track', navigator.doNotTrack],
                 ['Hardware concurrency', navigator.hardwareConcurrency],
@@ -40,6 +39,7 @@ function fingerprint() {
                 ['Vendor', navigator.vendor],
                 ['Vendor sub', navigator.vendorSub],
                 ['Web driver', navigator.webdriver],
+                ['Canvas hash', getCanvasData()],
                 ['WebGL hash', getWebGLData()],
                 ['WebGL vendor', getWebGLVendor()],
                 ['WebGL renderer', getWebGLRenderer()],
@@ -77,6 +77,27 @@ function toString(x) {
     if (x != undefined)
         return x.toString();
     return 'undefined';
+}
+
+
+function getPlugins() {
+    let plugins = navigator.plugins;
+    let pluginsList = "";
+
+    for (let i = 0; i < plugins.length; i++) {
+        pluginsList += "Name: '" + plugins[i].name + "', ";
+        pluginsList += "Version: '" + plugins[i].version + "', ";
+        pluginsList += "Description: '" + plugins[i].description + "', ";
+        pluginsList += "Filename: '" + plugins[i].filename + "'; ";
+    }
+
+    return pluginsList;
+}
+
+
+function getTimezoneOffset() {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
+    return new Date().getTimezoneOffset();
 }
 
 
@@ -150,27 +171,6 @@ function getWebGLUnmaskedRenderer() {
         return undefined;
 
     return gl.getParameter(glext.UNMASKED_RENDERER_WEBGL);
-}
-
-
-function getPlugins() {
-    let plugins = navigator.plugins;
-    let pluginsList = "";
-
-    for (let i = 0; i < plugins.length; i++) {
-        pluginsList += "Name: '" + plugins[i].name + "', ";
-        pluginsList += "Version: '" + plugins[i].version + "', ";
-        pluginsList += "Description: '" + plugins[i].description + "', ";
-        pluginsList += "Filename: '" + plugins[i].filename + "'; ";
-    }
-
-    return pluginsList;
-}
-
-
-function getTimezoneOffset() {
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
-    return new Date().getTimezoneOffset();
 }
 
 
