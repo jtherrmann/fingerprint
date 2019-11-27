@@ -14,7 +14,7 @@ function fingerprint() {
                 ['App code name', navigator.appCodeName],
                 ['App version', navigator.appVersion],
                 ['Build id', navigator.buildID],
-                ['Canvas hash', getCanvasHash()],
+                ['Canvas hash', getCanvasData()],
                 ['Cookies enabled', navigator.cookieEnabled],
                 ['Do not track', navigator.doNotTrack],
                 ['Hardware concurrency', navigator.hardwareConcurrency],
@@ -64,7 +64,7 @@ function toString(x) {
 }
 
 
-function getCanvasHash() {
+function getCanvasData() {
     let canvas = document.getElementById('canvas');
     let context = canvas.getContext('2d');
 
