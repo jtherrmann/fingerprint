@@ -3,7 +3,6 @@ function fingerprint() {
         url: '/fingerprint-js',
         data: {
             fingerprint: JSON.stringify([
-                ['Timezone offset', getTimezoneOffset()],
 
                 // https://www.w3schools.com/jsref/obj_navigator.asp
 
@@ -15,20 +14,18 @@ function fingerprint() {
                 ['App code name', navigator.appCodeName],
                 ['App version', navigator.appVersion],
                 ['Build id', navigator.buildID],
+                ['Canvas hash', getCanvasHash()],
                 ['Cookies enabled', navigator.cookieEnabled],
                 ['Do not track', navigator.doNotTrack],
                 ['Hardware concurrency', navigator.hardwareConcurrency],
-
                 ['Java enabled', navigator.javaEnabled()],
-
                 ['Language', navigator.language],
                 ['Max touch points', navigator.maxTouchPoints],
                 ['Platform', navigator.platform],
-
                 ['Plugins', getPlugins()],
-
                 ['Product', navigator.product],
                 ['Product sub', navigator.productSub],
+                ['Timezone offset', getTimezoneOffset()],
                 ['Vendor', navigator.vendor],
                 ['Vendor sub', navigator.vendorSub],
                 ['Web driver', navigator.webdriver],
@@ -85,6 +82,19 @@ function getPlugins() {
     }
 
     return pluginsList;
+}
+
+
+function getCanvasHash() {
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d');
+
+    // TODO finish
+    context.font = '30px Arial';
+    context.fillText('Hello world', 10, 50);
+
+    // TODO hash
+    return canvas.toDataURL();
 }
 
 
