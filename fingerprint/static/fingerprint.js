@@ -5,6 +5,7 @@ function fingerprint() {
             fingerprint: JSON.stringify([
 
                 // https://www.w3schools.com/jsref/obj_navigator.asp
+                // https://www.w3schools.com/jsref/obj_screen.asp
 
                 // TODO more navigator properties, e.g. mediaDevices,
                 // permissions, etc.
@@ -25,6 +26,16 @@ function fingerprint() {
                 ['Plugins', getPlugins()],
                 ['Product', navigator.product],
                 ['Product sub', navigator.productSub],
+                ['Screen available height', screen.availHeight],
+                ['Screen available left', screen.availLeft],
+                ['Screen available top', screen.availTop],
+                ['Screen available width', screen.availWidth],
+                ['Screen color depth', screen.colorDepth],
+                ['Screen height', screen.height],
+                ['Screen left', screen.left],
+                ['Screen pixel depth', screen.pixelDepth],
+                ['Screen top', screen.top],
+                ['Screen width', screen.width],
                 ['Timezone offset', getTimezoneOffset()],
                 ['Vendor', navigator.vendor],
                 ['Vendor sub', navigator.vendorSub],
