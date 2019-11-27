@@ -40,6 +40,8 @@ function fingerprint() {
                 ['Vendor', navigator.vendor],
                 ['Vendor sub', navigator.vendorSub],
                 ['Web driver', navigator.webdriver],
+                ['WebGL vendor', getWebGLVendor()],
+                ['WebGL renderer', getWebGLRenderer()],
 
             ].map(processPair))
         },
@@ -79,7 +81,7 @@ function getCanvasData() {
     // https://securehomes.esat.kuleuven.be/~gacar/persistent/the_web_never_forgets.pdf
     // https://amiunique.org/fp
 
-    let canvas = document.getElementById('canvas');
+    let canvas = document.getElementById('2d-canvas');
     let context = canvas.getContext('2d');
 
     let testStr = 'How  quickly  daft  jumping  zebras  vex 🤣 ,.!@#$%^&*()[]{}-_/?'
@@ -99,6 +101,35 @@ function getCanvasData() {
     context.fillText(testStr, 10, 50);
 
     return canvas.toDataURL();
+}
+
+
+// TODO
+// function getWebGLData() {
+
+//     // TODO
+//     // if (!gl)
+//     //     return '';
+
+//     gl.clearColor(0.0, 0.0, 0.0, 1.0);
+//     gl.clear(gl.COLOR_BUFFER_BIT);
+// }
+
+// TODO check gl and glext separately, test result
+
+function getWebGLVendor() {
+    if (!gl || !glext)
+        return undefined;
+
+    return gl.getParameter(glext.UNMASKED_VENDOR_WEBGL);
+}
+
+
+function getWebGLRenderer() {
+    if (!gl || !glext)
+        return undefined;
+
+    return gl.getParameter(glext.UNMASKED_RENDERER_WEBGL);
 }
 
 
@@ -144,7 +175,14 @@ function populateTable(results, tableId) {
     }
 }
 
+var gl, glext;
 
 $(document).ready(function() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
+    gl = document.getElementById('webgl-canvas').getContext('webgl');
+
+    // https://stackoverflow.com/a/23791450
+    glext = gl.getExtension('WEBGL_debug_renderer_info');
+
     fingerprint();
 });

@@ -12,4 +12,9 @@ def format_database_column_name(name):
         return '-'.join(word.capitalize() for word in words[1:])
 
     assert words[0] == 'js'
+
+    if words[1] == 'webgl':
+        words[1] = 'WebGL'
+        return ' '.join(words[1:])
+
     return ' '.join(words[1:]).capitalize()
