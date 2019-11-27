@@ -65,6 +65,8 @@ function toString(x) {
 
 
 function getCanvasData() {
+    // https://securehomes.esat.kuleuven.be/~gacar/persistent/the_web_never_forgets.pdf
+
     let canvas = document.getElementById('canvas');
     let context = canvas.getContext('2d');
 
