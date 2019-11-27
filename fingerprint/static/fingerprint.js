@@ -7,11 +7,6 @@ function fingerprint() {
                 // https://www.w3schools.com/jsref/obj_navigator.asp
                 // https://www.w3schools.com/jsref/obj_screen.asp
 
-                // TODO more navigator properties, e.g. mediaDevices,
-                // permissions, etc.
-
-                // TODO # of navigator properties
-
                 ['App code name', navigator.appCodeName],
                 ['App version', navigator.appVersion],
                 ['Build id', navigator.buildID],
