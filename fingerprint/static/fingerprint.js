@@ -64,9 +64,16 @@ function toString(x) {
 }
 
 
-function getTimezoneOffset() {
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
-    return new Date().getTimezoneOffset();
+function getCanvasHash() {
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d');
+
+    // TODO finish
+    context.font = '30px Arial';
+    context.fillText('Hello world', 10, 50);
+
+    // TODO hash
+    return canvas.toDataURL();
 }
 
 
@@ -85,16 +92,9 @@ function getPlugins() {
 }
 
 
-function getCanvasHash() {
-    let canvas = document.getElementById('canvas');
-    let context = canvas.getContext('2d');
-
-    // TODO finish
-    context.font = '30px Arial';
-    context.fillText('Hello world', 10, 50);
-
-    // TODO hash
-    return canvas.toDataURL();
+function getTimezoneOffset() {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
+    return new Date().getTimezoneOffset();
 }
 
 
