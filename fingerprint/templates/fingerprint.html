@@ -114,6 +114,49 @@
 
 </div>
 
-<div id="js-fingerprint-error"></div>
+<div id="js-client-error" hidden>
+  <br />
+  <p>
+    <b>Error:</b> There was an error while processing the JavaScript
+    fingerprint. Please click "Submit" below to submit an error report.
+  </p>
+
+  <form action="/error-report" method="post">
+    User agent:
+    <br />
+    <input class="error-report-input" id="js-client-error-user-agent" type="text" readonly="readonly" name="user-agent" value="">
+    <br />
+    <br />
+
+    Error:
+    <br />
+    <input class="error-report-input" id="js-client-error-error" type="text" readonly="readonly" name="error" value="">
+    <br />
+    <br />
+
+    Stack trace:
+    <br />
+    <input class="error-report-input" id="js-client-error-stack-trace" type="text" readonly="readonly" name="stack-trace" value="">
+    <br />
+    <br />
+
+    Timestamp:
+    <br />
+    <input class="error-report-input" id="js-client-error-timestamp" type="text" readonly="readonly" name="timestamp" value="">
+    <br />
+    <br />
+
+    Comments:
+    <br />
+    <input class="error-report-input" type="text" name="comments" value="">
+    <br />
+    <br />
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<div id="js-server-error"></div>
+
 <noscript>JavaScript is not enabled.</noscript>
 {% endblock %}

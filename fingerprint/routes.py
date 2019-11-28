@@ -126,3 +126,11 @@ def canvas_hash(canvas_str):
     if canvas_str == 'undefined':
         return canvas_str
     return sha256(canvas_str.encode()).hexdigest()
+
+
+@app.route('/error-report', methods=['POST'])
+def error_report():
+    form = flask.request.form
+    report = '\n'.join('{}: {}'.format(k, form[k]) for k in form)
+    print('ERROR REPORT:\n' + report)
+    return flask.render_template('error-report.html')

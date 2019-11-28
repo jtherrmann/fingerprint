@@ -55,7 +55,7 @@ function fingerprint() {
             $('#js-results').show();
         },
         error: function(error) {
-            $('#js-fingerprint-error').text(
+            $('#js-server-error').text(
                 'Error: ' + error.status + ' ' + error.statusText
             );
         }
@@ -193,15 +193,28 @@ function populateTable(results, tableId) {
 var glcanvas, gl, glext;
 
 $(document).ready(function() {
-    // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
-    // https://stackoverflow.com/a/26790802
-    glcanvas = document.getElementById('webgl-canvas');
-    gl = glcanvas.getContext('webgl', {preserveDrawingBuffer: true});
+    try {
+        // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
+        // https://stackoverflow.com/a/26790802
+        glcanvas = document.getElementById('webgl-canvas');
+        gl = glcanvas.getContext('webgl', {preserveDrawingBuffer: true});
 
-    if (gl) {
-        // https://stackoverflow.com/a/23791450
-        glext = gl.getExtension('WEBGL_debug_renderer_info');
+        if (gl) {
+            // https://stackoverflow.com/a/23791450
+            glext = gl.getExtension('WEBGL_debug_renderer_info');
+        }
+
+        fingerprint();
     }
+    catch (error) {
+        $('#js-client-error').show();
 
-    fingerprint();
+        $('#js-client-error-user-agent').val(navigator.userAgent);
+        $('#js-client-error-error').val(error.toString());
+        if (error.stack) {
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack
+            $('#js-client-error-stack-trace').val(error.stack.toString());
+        }
+        $('#js-client-error-timestamp').val(new Date().toString());
+    }
 });
