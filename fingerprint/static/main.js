@@ -1,3 +1,7 @@
+// uBlock Origin blocks requests from this script if it has a suspicious name
+// like "fingerprint.js"
+
+
 function fingerprint() {
     $.post({
         url: '/fingerprint-js',
