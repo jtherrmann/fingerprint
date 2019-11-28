@@ -136,6 +136,11 @@ def error_report():
     return flask.render_template('error-report.html')
 
 
+@app.route('/about')
+def about():
+    return flask.render_template('about.html')
+
+
 @app.route('/contact')
 def contact():
     return flask.render_template('contact.html')

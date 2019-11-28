@@ -3,5 +3,16 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<a href="fingerprint" class="clickable">What's my fingerprint?</a>
+<div id="home-content">
+  <p>
+    This website is an undergraduate cybersecurity project whose goal is to
+    study <a href="https://en.wikipedia.org/wiki/Device_fingerprint"
+    target="_blank">browser fingerprinting</a> techniques. See
+    the <a href="about" target="_blank">About page</a> for more information.
+  </p>
+
+  <div id="home-fp-button">
+    <a href="fingerprint" class="clickable">What's my fingerprint?</a>
+  </div>
+</div>
 {% endblock %}

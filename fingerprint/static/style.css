@@ -85,6 +85,29 @@ th {
     width: 800px;
 }
 
+li {
+    padding-bottom: 10px;
+}
+
+p, li {
+    line-height: 1.5;
+}
+
+#about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#home-content {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#home-fp-button {
+    padding-top: 40px;
+    text-align: center;
+}
+
 /* https://www.w3schools.com/css/css_tooltip.asp */
 
 .tooltip {

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div id="about-content">
+  <h1>About this site</h1>
+
+  <p>
+    Some websites use a technique
+    called <a href="https://en.wikipedia.org/wiki/Device_fingerprint"
+    target="_blank">browser fingerprinting</a> in order to uniquely identify
+    your web browser, even when you disable cookies or change your IP address.
+  </p>
+
+  <p>
+    Websites such as
+    <a href="https://panopticlick.eff.org/" target="_blank">Panopticlick</a>
+    and <a href="https://amiunique.org/" target="_blank">AmIUnique</a> attempt
+    to collect your browser's fingerprint in order to determine how uniquely
+    identifiable your web browser is.
+  </p>
+
+  <p>
+    This website is an undergraduate cybersecurity project inspired by those
+    sites, though I have only implemented a small fraction of the available
+    fingerprinting techniques.
+  </p>
+
+  <p>
+    When you visit the <a href="fingerprint" target="_blank">fingerprint
+    page</a>:
+    
+    <ul>
+      <li>
+        The page collects information about your browser and displays your
+        "fingerprint".
+      </li>
+      <li>
+        The page sends you a single cookie, which is only used to prevent
+        re-collecting your fingerprint if you visit the page multiple times.
+        You are free to block or delete this cookie, but please refrain from
+        visiting the page multiple times if you do (as this will dilute the
+        dataset).
+      </li>
+      <li>
+        Your IP address is NOT collected or stored with your fingerprint. I
+        make NO attempt to associate your browser's fingerprint with your
+        real-world identity.
+      </li>
+    </ul>
+  </p>
+
+<!-- TODO references -->
+</div>
+{% endblock %}
