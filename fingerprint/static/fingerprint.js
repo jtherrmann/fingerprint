@@ -123,14 +123,13 @@ function getCanvasData() {
 }
 
 
-// TODO finish
 function getWebGLData() {
     // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
 
     if (!gl)
         return undefined;
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.2, 0.4, 0.6, 0.8);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     return glcanvas.toDataURL();
