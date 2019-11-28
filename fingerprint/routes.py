@@ -134,3 +134,8 @@ def error_report():
     report = '\n'.join('{}: {}'.format(k, form[k]) for k in form)
     print('ERROR REPORT:\n' + report)
     return flask.render_template('error-report.html')
+
+
+@app.route('/contact')
+def contact():
+    return flask.render_template('contact.html')
