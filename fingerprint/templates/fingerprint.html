@@ -114,6 +114,22 @@
 
 </div>
 
+{% macro error_report_input(name, readonly=True) -%}
+
+{{ name.replace('-', ' ').capitalize() }}:
+<br />
+<input
+  class="error-report-input"
+  id="js-client-error-{{ name }}"
+  type="text"
+  {% if readonly %}readonly="readonly"{% endif %}
+  name="{{ name }}"
+  value="">
+<br />
+<br />
+
+{%- endmacro %}
+
 <div id="js-client-error" hidden>
   <br />
   <p>
@@ -122,35 +138,11 @@
   </p>
 
   <form action="/error-report" method="post">
-    User agent:
-    <br />
-    <input class="error-report-input" id="js-client-error-user-agent" type="text" readonly="readonly" name="user-agent" value="">
-    <br />
-    <br />
-
-    Error:
-    <br />
-    <input class="error-report-input" id="js-client-error-error" type="text" readonly="readonly" name="error" value="">
-    <br />
-    <br />
-
-    Stack trace:
-    <br />
-    <input class="error-report-input" id="js-client-error-stack-trace" type="text" readonly="readonly" name="stack-trace" value="">
-    <br />
-    <br />
-
-    Timestamp:
-    <br />
-    <input class="error-report-input" id="js-client-error-timestamp" type="text" readonly="readonly" name="timestamp" value="">
-    <br />
-    <br />
-
-    Comments:
-    <br />
-    <input class="error-report-input" type="text" name="comments" value="">
-    <br />
-    <br />
+    {{ error_report_input('user-agent') }}
+    {{ error_report_input('error') }}
+    {{ error_report_input('stack-trace') }}
+    {{ error_report_input('timestamp') }}
+    {{ error_report_input('comments', readonly=False) }}
 
     <input type="submit" value="Submit">
   </form>
