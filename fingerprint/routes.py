@@ -19,8 +19,8 @@ def home():
     return flask.render_template('home.html')
 
 
-@app.route('/stats')
-def stats():
+@app.route('/results')
+def results():
     initial_request_stats, initial_request_total, initial_request_unique =\
         database.get_stats(database.InitialRequestFingerprint)
 
