@@ -28,7 +28,7 @@ def results():
         database.get_stats(database.JavaScriptFingerprint)
 
     return flask.render_template(
-        'stats.html',
+        'results.html',
 
         initial_request_stats=initial_request_stats,
         initial_request_total=initial_request_total,
