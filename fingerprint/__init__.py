@@ -1,5 +1,7 @@
 import sys
-assert sys.version_info >= (3, 7, 3), f'Got version {sys.version_info}'
+
+print(f'Running Python version {sys.version_info}')
+assert sys.version_info >= (3, 7, 3)
 
 import flask  # noqa: E402
 
