@@ -85,7 +85,7 @@
 
 <div id="js-results" hidden>
 
-{{ overall_similarity_tooltip('js-overall-similarity') }}
+  {{ overall_similarity_tooltip('js-overall-similarity') }}
 
   <table id="js-headers">
     <tr>
@@ -106,9 +106,19 @@
   </table>
 
   <h3>Canvas</h3>
+  <p class="fingerprint-description">
+    Image used to generate the hash for
+    the <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting"
+    target="_blank">Canvas fingerprint</a>.
+  </p>
   <canvas id="2d-canvas" width="1000" height="150"></canvas>
 
   <h3>WebGL</h3>
+  <p class="fingerprint-description">
+    Image used to generate the hash for the WebGL fingerprint. This is a
+    placeholder image until I implement a more complex image with multiple
+    shapes and colors.
+  </p>
   <canvas id="webgl-canvas" width="100" height="100"></canvas>
 
 </div>
