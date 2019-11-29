@@ -11,7 +11,7 @@
 
 {% macro duplicate_message() -%}
 <div style="padding-top:2px;"></div>
-<p>
+<p class="misc-p">
   <b>Note:</b> Your fingerprint was not recorded because it appears you have
   already visited this page and submitted the same fingerprint. If you believe
   this is an error, please <a href="contact">contact me</a>.
@@ -48,7 +48,7 @@
 
 {% block content %}
 <h2>Initial request fingerprint</h2>
-<p class="fingerprint-description">
+<p class="misc-p fingerprint-description">
   Headers from the initial request for this webpage.
 </p>
 
@@ -76,7 +76,7 @@
 <br />
 
 <h2>JavaScript fingerprint</h2>
-<p class="fingerprint-description">
+<p class="misc-p fingerprint-description">
   Fingerprinting data collected via JavaScript, reported via an AJAX
   request.
 </p>
@@ -106,7 +106,7 @@
   </table>
 
   <h3>Canvas</h3>
-  <p class="fingerprint-description">
+  <p class="misc-p fingerprint-description">
     Image used to generate the hash for
     the <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting"
     target="_blank">Canvas fingerprint</a>.
@@ -114,7 +114,7 @@
   <canvas id="2d-canvas" width="1000" height="150"></canvas>
 
   <h3>WebGL</h3>
-  <p class="fingerprint-description">
+  <p class="misc-p fingerprint-description">
     Image used to generate the hash for the WebGL fingerprint. This is a
     placeholder image until I implement a more complex image with multiple
     shapes and colors.
@@ -141,7 +141,7 @@
 
 <div id="js-client-error" hidden>
   <br />
-  <p>
+  <p class="misc-p">
     <b>Error:</b> There was an error while processing the JavaScript
     fingerprint. Please click "Submit" below to submit an error report.
   </p>

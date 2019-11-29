@@ -108,6 +108,10 @@ p, li {
     text-align: center;
 }
 
+.misc-p {
+    max-width: 650px;
+}
+
 /* https://www.w3schools.com/css/css_tooltip.asp */
 
 .tooltip {
