@@ -1,5 +1,5 @@
 import sys
-assert sys.version_info >= (3, 7, 3)
+assert sys.version_info >= (3, 7, 3), f'Got version {sys.version_info}'
 
 import flask  # noqa: E402
 
