@@ -56,6 +56,7 @@ function fingerprint() {
             populateTable(response.headers_results, '#js-headers');
             populateTable(response.js_data_results, '#js-other-data');
 
+            $('#js-loading').hide();
             $('#js-results').show();
         },
         error: function(error) {
