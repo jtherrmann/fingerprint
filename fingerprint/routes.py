@@ -16,7 +16,10 @@ USER_ID_KEY = 'user-id'
 
 @app.route('/')
 def home():
-    return flask.render_template('home.html')
+    return flask.render_template(
+        'home.html',
+        readonly_mode=util.readonly_mode()
+    )
 
 
 @app.route('/results')
@@ -56,9 +59,10 @@ def fingerprint():
         max_age = 365 * 24 * 3600
         expires = datetime.utcnow() + timedelta(days=365)
 
-        response.set_cookie(
-            USER_ID_KEY, user_id, max_age=max_age, expires=expires
-        )
+        if not util.readonly_mode():
+            response.set_cookie(
+                USER_ID_KEY, user_id, max_age=max_age, expires=expires
+            )
 
     headers = request_headers(
         'User-Agent',

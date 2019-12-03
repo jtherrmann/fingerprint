@@ -26,7 +26,8 @@
     <span class="tooltiptext-right" style="width:615px;">
       Percentage of fingerprints identical to yours (a higher value indicates
       better anonymity). Note that your own fingerprint counts toward this
-      percentage.
+      percentage (unless it was not recorded because the site is in read-only
+      mode).
     </span>
   </div>
   <span id="{{ span_id }}">{{ similarity_value }}</span>
@@ -40,7 +41,8 @@
   <span class="tooltiptext-left" style="width:630px;">
     Percentage of fingerprints that have the same value as yours does for the
     given attribute. Note that your own fingerprint counts toward this
-    percentage.
+    percentage (unless it was not recorded because the site is in read-only
+    mode).
   </span>
 </div>
 {%- endmacro %}

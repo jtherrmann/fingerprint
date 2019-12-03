@@ -1,3 +1,6 @@
+import os
+
+
 def get_percentage(count, total):
     return f'{round(count/total*100, 2)}%'
 
@@ -18,3 +21,7 @@ def format_database_column_name(name):
         return ' '.join(words[1:])
 
     return ' '.join(words[1:]).capitalize()
+
+
+def readonly_mode():
+    return os.getenv('FP_READONLY_MODE')

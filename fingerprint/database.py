@@ -89,14 +89,17 @@ def add_fingerprint(
 
         if not fingerprint_exists(
                 session, fingerprint_type, row_kwargs, user_id):
-            session.add(
-                fingerprint_type(
-                    cookie_user_id=user_id,
-                    collection_datetime=collection_datetime,
-                    **row_kwargs
+
+            if not util.readonly_mode():
+                session.add(
+                    fingerprint_type(
+                        cookie_user_id=user_id,
+                        collection_datetime=collection_datetime,
+                        **row_kwargs
+                    )
                 )
-            )
-            session.commit()
+                session.commit()
+
             results['duplicate'] = False
         else:
             results['duplicate'] = True

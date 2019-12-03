@@ -4,6 +4,15 @@
 
 {% block content %}
 <div id="home-content">
+  {% if readonly_mode %}
+  <p>
+    <i>As of 3 Dec 2019 (UTC), this website is now in read-only mode. You can
+    still view your fingerprint and previous results, but new fingerprints will
+    not be recorded.</i>
+  </p>
+  <div style="padding-bottom:10px;"></div>
+  {% endif %}
+
   <p>
     This website is an undergraduate cybersecurity project whose goal is to
     study <a href="https://en.wikipedia.org/wiki/Device_fingerprint"
